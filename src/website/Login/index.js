@@ -31,11 +31,11 @@ function Login() {
                      <Text mb='20px' textAlign='center' fontWeight='bold' fontSize='40px'>ログイン</Text>
                      
                      <Box mb='20px'>  <Text mb='10px'> メールアドレス</Text>
-                     <Input w='400px' type='email' fontWeight='bold'  border='4px' borderColor={'#8c7851'} focusBorderColor='#020826'/></Box>
+                     <Input w='400px' type='email' fontWeight='bold'  border='4px' borderColor={'#8c7851'} focusBorderColor='#020826' placeholder='メールアドレスを入力する'/></Box>
                    
                     <Box mb='20px'>
                     <Text mb='10px'> パスワード</Text>
-                     <Input w='400px' type={typeP} fontWeight='bold'  border='4px' borderColor={'#8c7851'} focusBorderColor='#020826'/>
+                     <Input w='400px' type={typeP} fontWeight='bold'  border='4px' borderColor={'#8c7851'} focusBorderColor='#020826' placeholder='パスワードを入力する'/>
                     </Box>
                      
                     <Box mb='20px'><Checkbox fontWeight='normal' size='sm' onChange={handleToggle} 
