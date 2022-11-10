@@ -24,10 +24,6 @@ function Header() {
              <Button variant={'link'} color='#716040' fontSize={'17px'}>
                 <Link to='/login'> ログイン </Link>
               </Button>
-              <Text fontSize={'17px'} ml='5px' mr='5px' userSelect={'none'}> / </Text>
-              <Button variant={'link'} color='#716040' fontSize={'17px'}>
-                <Link to='/sign-up'>サインアップ</Link>
-              </Button>
             </Flex>
        </HStack>
     </>
