@@ -8,7 +8,7 @@ const SliderShow = (props) => {
     const [id, setId] = useState(0);
     console.log(props.data)
     function autoCount() {
-        if(id>=9) {
+        if(id>=8) {
             setId(0)
         }
         else {
@@ -16,7 +16,7 @@ const SliderShow = (props) => {
         }
     }
     function handleClickRight() {
-        if(id<9){
+        if(id<8){
             setId(id+1)
         }
         else{
@@ -28,7 +28,7 @@ const SliderShow = (props) => {
             setId(id-1)
         }
         else {
-            setId(9)
+            setId(8)
         }
     }
     useEffect(
@@ -51,8 +51,7 @@ const SliderShow = (props) => {
                                 id===5 ? '-500%':
                                 id===6 ? '-600%':
                                 id===7 ? '-700%': 
-                                id===8 ? '-800%':
-                                id===9 ? '-900%': '0%'}
+                                id===8 ? '-800%': '0%'}
                     minW='900px'
                     objectFit='cover'
                     h='400px'
@@ -73,7 +72,6 @@ const SliderShow = (props) => {
                     <Radio value={6} onClick={(e)=> {setId(6)}} colorScheme='orange'></Radio>
                     <Radio value={7} onClick={(e)=> {setId(7)}} colorScheme='orange'></Radio>
                     <Radio value={8} onClick={(e)=> {setId(8)}} colorScheme='orange'></Radio>
-                    <Radio value={9} onClick={(e)=> {setId(9)}} colorScheme='orange'></Radio>
                 </HStack>
             </RadioGroup>
             <HStack spacing={950} pos='absolute' color='white'>

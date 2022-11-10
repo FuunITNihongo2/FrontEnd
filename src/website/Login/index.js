@@ -17,7 +17,7 @@ function Login() {
          <Box w='50%' h='100vh' bg='white' pt='100px'>
          <Center>
          <Box>
-          <Image src={require('../../imgs/shop.png')} w='400px'/>
+         <Link to='/'><Image src={require('../../imgs/shop.png')} w='400px'/></Link>
           <Heading color='#716040' textAlign='center' mt='10px'>販売ブース</Heading>
          </Box>
          </Center>
@@ -41,7 +41,7 @@ function Login() {
                     <Box mb='20px'><Checkbox fontWeight='normal' size='sm' onChange={handleToggle} 
                 colorScheme='orange' borderColor={'#716040'} color='#716040'>パスワードを表示</Checkbox></Box>   
                      <Button bg='#8c7851' color={'#fffffe'} _hover={{bg:'#020826'}} w='400px' fontWeight='bold' mb='15px'> ログイン</Button><br/>
-                    <Text fontSize='15px' textAlign='center'>アカウントをお持ちでない? <span><Link to='sign-up'><Button   color='#f25042' variant='link' fontSize={'15px'}>サインアップ</Button></Link></span></Text>
+                    <Text fontSize='15px' textAlign='center'>アカウントをお持ちでない? <span><Link to='/sign-up'><Button   color='#f25042' variant='link' fontSize={'15px'}>サインアップ</Button></Link></span></Text>
                   </Box>
                  </Center>
                     
