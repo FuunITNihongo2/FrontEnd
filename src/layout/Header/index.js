@@ -11,7 +11,6 @@ function Header() {
             <Image src={require('../../imgs/shop.png')} w='55px'/>
             <Text ml='10px' color='#716040' fontWeight='bold' fontSize='30px'>販売ブース</Text>
           </Flex>
-
           <Spacer/>
           <Box color='#716040'>  
            <Input w='450px' h='45px' type='text' fontWeight='bold'  border='4px' borderColor={'#8c7851'} focusBorderColor='#020826' placeholder='検検...'/>
