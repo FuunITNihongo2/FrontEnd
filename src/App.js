@@ -8,7 +8,7 @@ import "swiper/css/bundle";
 
 function App() {
   return (
-    <Box minH={'100vh'} w='100vw' bg='#f9f4ef' >
+    <Box minH={'100vh'} w='100vw' bg='#ffffff' >
       <ScrollToTop/>
         <Routes>
            <Route path="/" element={<Home/>}/>

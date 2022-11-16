@@ -1,54 +1,53 @@
-import { Box, Button, Center,  Checkbox,  Flex, Heading, Image, Input, Text } from '@chakra-ui/react'
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import {
+  Button,
+  Checkbox,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  Link,
+  Stack,
+  Image,
+} from "@chakra-ui/react";
 
-function Login() {
-  const [typeP,setTypeP]=useState("password");
-    const handleToggle=()=>{
-        if(typeP==='password'){
-          setTypeP('text');
-        }
-        else{
-          setTypeP('password');
-        }
-      }
+
+export default function SplitScreen() {
   return (
-    <Flex w='100%' h='100%' alignItems={'center'}>
-         <Box w='50%' h='100vh' bg='white' pt='100px'>
-         <Center>
-         <Box>
-         <Link to='/'><Image src={require('../../imgs/shop.png')} w='400px'/></Link>
-          <Heading color='#716040' textAlign='center' mt='10px'>販売ブース</Heading>
-         </Box>
-         </Center>
-         </Box>
-        
-         <Box w='50%' h='100vh' pt='100px'>
-             <Center>
-                 <Box w='550px' h='500px' bg='#fffffe' borderRadius='8px' boxShadow=' 8px 8px #C0C0C0' color='#716040' pt='40px'>
-                 <Center>
-                  <Box>
-                     <Text mb='20px' textAlign='center' fontWeight='bold' fontSize='40px'>ログイン</Text>
-                     
-                     <Box mb='20px'>  <Text mb='10px'> メールアドレス</Text>
-                     <Input w='400px' type='email' fontWeight='bold'  border='4px' borderColor={'#8c7851'} focusBorderColor='#020826' placeholder='メールアドレスを入力する'/></Box>
-                   
-                    <Box mb='20px'>
-                    <Text mb='10px'> パスワード</Text>
-                     <Input w='400px' type={typeP} fontWeight='bold'  border='4px' borderColor={'#8c7851'} focusBorderColor='#020826' placeholder='パスワードを入力する'/>
-                    </Box>
-                     
-                    <Box mb='20px'><Checkbox fontWeight='normal' size='sm' onChange={handleToggle} 
-                colorScheme='orange' borderColor={'#716040'} color='#716040'>パスワードを表示</Checkbox></Box>   
-                     <Button bg='#8c7851' color={'#fffffe'} _hover={{bg:'#020826'}} w='400px' fontWeight='bold' mb='15px'> ログイン</Button><br/>
-                  </Box>
-                 </Center>
-                    
-                 </Box>
-             </Center>
-         </Box>
-    </Flex>
-  )
+    <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
+      <Flex p={8} flex={1} align={"center"} justify={"center"}>
+        <Stack spacing={4} w={"full"} maxW={"md"}>
+          <Heading fontSize={"2xl"}>Sign in to your account</Heading>
+          <FormControl id="email">
+            <FormLabel>Email address</FormLabel>
+            <Input type="email" />
+          </FormControl>
+          <FormControl id="password">
+            <FormLabel>Password</FormLabel>
+            <Input type="password" />
+          </FormControl>
+          <Stack spacing={6}>
+            <Stack
+              direction={{ base: "column", sm: "row" }}
+              align={"start"}
+              justify={"space-between"}
+            >
+              <Checkbox>Remember me</Checkbox>
+              <Link color={"blue.500"}>Forgot password?</Link>
+            </Stack>
+            <Button colorScheme={"blue"} variant={"solid"}>
+              Sign in
+            </Button>
+          </Stack>
+        </Stack>
+      </Flex>
+      <Flex flex={1}>
+        <Image
+          alt={"Login Image"}
+          objectFit={"cover"}
+          src="/cau-vang-ba-na-hills.jpg"
+        />
+      </Flex>
+    </Stack>
+  );
 }
-
-export default Login
