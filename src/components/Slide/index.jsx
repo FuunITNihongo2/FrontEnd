@@ -24,13 +24,13 @@ export default function Slide() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src="/slide/slide1.svg" alt="" />
+          <img style={{height:"90vh"}} src="/slide/hinh1.jpg" alt=""/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/slide/slide2.svg" alt="" />
+          <img style={{height:"90vh"}} src="/slide/hinh2.jpg" alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/slide/slide3.svg" alt="" />
+          <img style={{height:"90vh"}} src="/slide/hinh3.jpg" alt="" />
         </SwiperSlide>
       </Swiper>
     </div>
