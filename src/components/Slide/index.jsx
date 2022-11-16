@@ -1,13 +1,25 @@
 import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper";
+import { Autoplay, Pagination, Navigation, EffectFade } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./style.css";
 
 export default function Slide() {
+  const img_slide = [
+    "mon1.jpg",
+    "mon2.jpg",
+    "mon3.jpg",
+    "mon4.jpg",
+    "mon5.jpg",
+    "mon6.jpg",
+    "mon7.jpg",
+    "mon8.jpg",
+    "mon9.jpg",
+  ];
+  let i = 0;
   return (
     <div className="slide">
       <Swiper
@@ -19,19 +31,20 @@ export default function Slide() {
         pagination={{
           clickable: true,
         }}
+        speed={2000}
         navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
+        effect={"fade"}
+        modules={[Autoplay, Pagination, Navigation, EffectFade]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <img style={{height:"90vh"}} src="/slide/hinh1.jpg" alt=""/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img style={{height:"90vh"}} src="/slide/hinh2.jpg" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img style={{height:"90vh"}} src="/slide/hinh3.jpg" alt="" />
-        </SwiperSlide>
+        {img_slide.map((img) => {
+          i = i + 1;
+          return (
+            <SwiperSlide key={i}>
+              <img style={{ height: "70vh" }} src={"/slide/" + img} alt="" />
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </div>
   );
