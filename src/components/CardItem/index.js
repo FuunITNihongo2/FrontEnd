@@ -35,7 +35,12 @@ export default function CardItem() {
         </CardBody>
 
         <CardFooter>
-          <Button variant="solid" colorScheme="blue">
+          <Button
+            variant="solid"
+            colorScheme="blue"
+            as="a"
+            href="/booth-details"
+          >
             Detail
           </Button>
         </CardFooter>

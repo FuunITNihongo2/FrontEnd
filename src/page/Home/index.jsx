@@ -1,5 +1,4 @@
 import React from "react";
-import Layout from "../../layout";
 import Slide from "../../components/Slide";
 import CardItem from "../../components/CardItem";
 import BoothCard from "../../components/BoothCard";
@@ -7,7 +6,7 @@ import { Text, Button, Flex, Box } from "@chakra-ui/react";
 import { Grid } from "@chakra-ui/react";
 function Home() {
   return (
-    <Layout>
+    <>
       <Slide />
       <Box p={5}>
         <Box bg="rgba(0,0,0,0.05)" p={5} borderRadius={8}>
@@ -44,7 +43,7 @@ function Home() {
           </Flex>
         </Box>
       </Box>
-    </Layout>
+    </>
   );
 }
 
