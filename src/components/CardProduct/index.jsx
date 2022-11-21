@@ -1,13 +1,6 @@
-import {
-  Box,
-  Center,
-  Text,
-  Stack,
-  Avatar,
-  Image
-} from "@chakra-ui/react";
+import { Box, Center, Text, Stack, Image } from "@chakra-ui/react";
 
-export default function blogPostWithImage() {
+export default function CardProduct() {
   return (
     <Center py={3}>
       <Box
@@ -27,7 +20,7 @@ export default function blogPostWithImage() {
           mb={6}
           pos={"relative"}
         >
-          <Image src="/slide/hinh5.jpg" layout={"fill"} />
+          <Image src="/slide/mon9.jpg" layout={"fill"} />
         </Box>
         <Stack>
           <Text
@@ -37,14 +30,8 @@ export default function blogPostWithImage() {
             fontSize={"sm"}
             letterSpacing={1.1}
           >
-            ブース名
+            Spaghetti
           </Text>
-          {/* <Heading
-            color={('gray.700', 'black')}
-            fontSize={'2xl'}
-            fontFamily={'body'}>
-            Boost your conversion rate
-          </Heading> */}
           <Text color={"gray.500"}>
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
             nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
@@ -53,13 +40,9 @@ export default function blogPostWithImage() {
           </Text>
         </Stack>
         <Stack mt={6} direction={"row"} spacing={4} align={"center"}>
-          <Avatar
-            src={"https://avatars0.githubusercontent.com/u/1164541?v=4"}
-            alt={"Author"}
-          />
-          <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-            <Text fontWeight={600}>ブースオーナー</Text>
-            <Text color={'gray.500'}>2022 </Text>
+          <Stack direction={"column"} spacing={0} fontSize={"sm"}>
+            <Text fontWeight={600}>プライス</Text>
+            <Text color={"gray.500"}>100.000-250.000 VND</Text>
           </Stack>
         </Stack>
       </Box>

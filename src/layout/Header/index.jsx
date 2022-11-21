@@ -21,6 +21,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
+import { FaUser } from "react-icons/fa";
 
 export default function Header() {
   const { isOpen, onToggle } = useDisclosure();
@@ -31,12 +32,14 @@ export default function Header() {
         bg={useColorModeValue("white", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
         minH={"60px"}
+        w="100vw"
         py={{ base: 2 }}
         px={{ base: 4 }}
         borderBottom={1}
         borderStyle={"solid"}
         borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}
+        pr={5}
       >
         <Flex
           flex={{ base: 1, md: "auto" }}
@@ -66,19 +69,9 @@ export default function Header() {
           </Flex>
         </Flex>
 
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
-          direction={"row"}
-          spacing={6}
-        >
-          <Button
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"/login"}
-          >
+        <Flex alignItems="center" as={"a"} href={"/login"}>
+          <FaUser />
+          <Button ml="2px" fontSize={"sm"} fontWeight={400} variant={"link"}>
             Sign In
           </Button>
           <Button
@@ -90,12 +83,12 @@ export default function Header() {
           >
             Sign Up
           </Button>
-        </Stack>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
-      </Collapse>
+        </Collapse>
+        </Flex>
     </Box>
   );
 }
@@ -252,8 +245,6 @@ const MobileNavItem = ({ label, children, href }) => {
     </Stack>
   );
 };
-
-
 
 const NAV_ITEMS = [
   {

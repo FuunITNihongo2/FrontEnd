@@ -1,5 +1,14 @@
 import React from "react";
-import { Card, CardBody, CardFooter, Image, Stack, Text, Heading, Button } from '@chakra-ui/react'
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  Image,
+  Stack,
+  Text,
+  Heading,
+  Button,
+} from "@chakra-ui/react";
 
 export default function CardItem() {
     return (
@@ -15,9 +24,9 @@ export default function CardItem() {
           alt="Caffe Latte"
         />
 
-        <Stack>
-          <CardBody>
-            <Heading size="md">ブース名</Heading>
+      <Stack bg="white">
+        <CardBody>
+          <Heading size="md">ブース名</Heading>
 
             <Text py="2">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
