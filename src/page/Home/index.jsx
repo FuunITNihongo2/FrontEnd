@@ -20,7 +20,11 @@ function Home() {
             <CardItem />
           </Grid>
           <Flex alignItems={"center"} justifyContent={"center"} mt={5}>
-            <Button colorScheme="teal" variant="solid" size="lg">
+            <Button
+              colorScheme="teal"
+              variant="solid"
+              size="lg"
+            >
               もっと見る
             </Button>
           </Flex>
@@ -37,7 +41,11 @@ function Home() {
             <BoothCard />
           </Grid>
           <Flex alignItems={"center"} justifyContent={"center"}>
-            <Button colorScheme="teal" variant="solid" size="lg">
+            <Button
+              colorScheme="teal"
+              variant="solid"
+              size="lg"
+            >
               もっと見る
             </Button>
           </Flex>
