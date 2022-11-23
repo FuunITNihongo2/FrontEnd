@@ -7,6 +7,8 @@ import Home from "./page/Home";
 import "swiper/css/bundle";
 import Layout from "./layout";
 import BoothDetail from "./page/BoothDetail";
+import Admin from './page/Admin';
+import ProductList from './page/Admin/Products/ProductList/ProductList';
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
           <Route path="booth-details" element={<BoothDetail />} />
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/admin/product" exact="true"  element={<ProductList/>}/>
       </Routes>
     </Box>
   );

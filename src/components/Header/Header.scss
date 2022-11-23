@@ -1,0 +1,114 @@
+.header{
+    min-height: 64px;
+    background-color: #222B36;
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__logo{
+        margin-left: 25px;
+    }
+    &__menu{
+
+        display: flex;
+        align-items: center;
+
+        li{
+            cursor: pointer;
+            padding: 5px 8px;
+            span{
+                font-size: 18px;
+                color: white;
+            }
+            img{
+                width: 32px;
+            }
+        }
+        li.flag{
+           img{
+            border-radius: 50%;
+           }
+           position: relative;
+           .logout-popup{
+            position: absolute;
+            background: #222B36;
+            top: 100%;
+            right: 20px;
+            transition: 0.4s ease-in;
+            opacity: 0;
+            overflow: hidden;
+            width: 0;
+            height: 0;
+            &.active{
+                width: 200px;
+                opacity: 1;
+                height: auto;
+            }
+            box-shadow: 2px 3px 4px 3px rgba(19, 17, 17, 0.644);
+            border-radius: 10px;
+             .itemv{
+                padding: 15px;
+            }
+            h2{
+                font-weight: 500;
+                font-size: 0.875rem;
+                line-height: 1.57;
+                color: rgb(255, 255, 255);
+                margin: 0;
+            }
+            p{
+                font-weight: 500;
+                font-size: 0.875rem;
+                line-height: 1.57;
+                color: rgb(145, 158, 171);
+                margin: 0;
+            }
+            .card__item{
+                border-top: 1px solid rgba(136, 132, 132, 0.301);
+                padding: 15px;
+                h4{
+                    font-weight: 500;
+                    font-size: 0.875rem;
+                    line-height: 1.57;
+                    color: rgb(255, 255, 255);
+                }
+                span{
+                    font-weight: 500;
+                    font-size: 0.875rem;
+                    line-height: 1.57;
+                    color: rgb(255, 255, 255);
+                }
+               
+            }
+            .loginv{
+                color: white;
+                border: 1px solid rgba(104, 142, 255, 0.5);
+                color: rgb(104, 142, 255);
+                // width: 100%;
+                text-transform: none;
+                display: block;
+                padding: 5px 15px;
+                border-radius: 16px;
+                margin: 10px 10px ;
+                transition: 0.3s;
+                text-align: center;
+           
+                &:hover{
+                    text-decoration: none;
+                    background-color: rgba(104, 142, 255, 0.08);
+                    border: 1px solid rgb(104, 142, 255);
+                }
+            }
+            
+        }
+
+        }
+       
+    }
+}
+ul,ol{
+    margin: 0;
+    list-style: none;
+}
