@@ -13,9 +13,16 @@ import React from "react";
 import { FaUser } from "react-icons/fa";
 import { ImLocation } from "react-icons/im";
 import { AiFillMail, AiFillPhone } from "react-icons/ai";
-import BoothCard from "../../components/BoothCard";
+import { useNavigate } from "react-router-dom";
+import CardProduct from "../../components/CardProduct";
+
 
 export default function BoothDetail() {
+
+  const navigate = useNavigate();
+   const navigateProduct = () => {
+     navigate('/product');
+  };
   return (
     <Stack minH="100vh" p={6} bg="rgba(0,0,0,0.05)" spacing={6}>
       <Flex bg="white" boxShadow="2xl" borderRadius={8}>
@@ -29,7 +36,9 @@ export default function BoothDetail() {
           />
         </Box>
         <Box flex={1} p={5}>
-          <Heading mb={1}>ブース名</Heading>
+          <Flex flexDirection={"row"} justifyContent={"space-between"}>
+            <Heading mb={1}>ブース名</Heading>
+          </Flex>
           <Divider bg="black" h={1} mb={4} />
           <Flex fontSize={"19px"} mb={2}>
             <Flex alignItems={"center"}>
@@ -87,17 +96,23 @@ export default function BoothDetail() {
           製品ポートフォリオ
         </Text>
         <Grid templateColumns="repeat(4, 1fr)" gap={6} px={10}>
-          <BoothCard />
-          <BoothCard />
-          <BoothCard />
-          <BoothCard />
+          <CardProduct />
+          <CardProduct />
+          <CardProduct />
+          <CardProduct />
         </Grid>
         <Flex alignItems={"center"} justifyContent={"center"}>
-          <Button colorScheme="teal" variant="solid" size="lg">
+          <Button
+            colorScheme="teal"
+            variant="solid"
+            size="lg"
+            onClick={navigateProduct}
+          >
             もっと見る
           </Button>
         </Flex>
       </Box>
+
     </Stack>
   );
 }

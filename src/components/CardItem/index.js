@@ -9,42 +9,47 @@ import {
   Heading,
   Button,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 export default function CardItem() {
-  return (
-    <Card
-      direction={{ base: "column", sm: "row" }}
-      overflow="hidden"
-      variant="outline"
-    >
-      <Image
-        objectFit="cover"
-        maxW={{ base: "100%", sm: "200px" }}
-        src="https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
-        alt="Caffe Latte"
-      />
+  
+  const navigate = useNavigate();
+   const navigateBooth = () => {
+    navigate('/booth-details');
+  };
 
-      <Stack bg="white">
-        <CardBody>
-          <Heading size="md">ブース名</Heading>
+    return (
+      <Card
+        direction={{ base: "column", sm: "row" }}
+        overflow="hidden"
+        variant="outline"
+      >
+        <Image
+          objectFit="cover"
+          maxW={{ base: "100%", sm: "200px" }}
+          src="/slide/hinh4.jpg"
+          alt="Caffe Latte"
+        />
 
-          <Text py="2">
-            Caffè latte is a coffee beverage of Italian origin made with
-            espresso and steamed milk.
-          </Text>
-        </CardBody>
+        <Stack bg="white">
+          <CardBody>
+            <Heading size="md">ブース名</Heading>
 
-        <CardFooter>
-          <Button
-            variant="solid"
-            colorScheme="blue"
-            as="a"
-            href="/booth-details"
-          >
-            Detail
-          </Button>
-        </CardFooter>
-      </Stack>
-    </Card>
-  );
+            <Text py="2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+              ornare, dolor ut suscipit maximus, enim ipsum vulputate turpis, eu
+              convallis mauris quam sit amet nunc. Nunc dictum porta nulla,
+              accumsan tincidunt dui pretium a. Sed consequat neque enim, vel
+              tempus augue lobortis et.
+            </Text>
+          </CardBody>
+
+          <CardFooter>
+            <Button variant="solid" colorScheme="blue" onClick={navigateBooth}>
+              見る
+            </Button>
+          </CardFooter>
+        </Stack>
+      </Card>
+    );
 }
