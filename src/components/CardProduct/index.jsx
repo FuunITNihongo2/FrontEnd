@@ -41,7 +41,7 @@ export default function CardProduct() {
         </Stack>
         <Stack mt={6} direction={"row"} spacing={4} align={"center"}>
           <Stack direction={"column"} spacing={0} fontSize={"sm"}>
-            <Text fontWeight={600}>プライス</Text>
+            <Text fontWeight={600}>価格</Text>
             <Text color={"gray.500"}>100.000-250.000 VND</Text>
           </Stack>
         </Stack>
