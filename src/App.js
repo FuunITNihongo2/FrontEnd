@@ -24,7 +24,7 @@ function App() {
           <Route path="product" element={<Product />} />
         </Route>
         <Route path="/login" element={<Login />} />
-        <Route path="/admin/product" exact="true" element={<ProductList />} />
+        <Route path="/admin/booths" exact="true"  element={<ProductList/>}/>
       </Routes>
     </Box>
   );
