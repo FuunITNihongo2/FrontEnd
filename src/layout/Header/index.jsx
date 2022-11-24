@@ -14,6 +14,11 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Image,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -21,7 +26,9 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaPersonBooth } from "react-icons/fa";
+import { BiLogOut } from "react-icons/bi";
+import { MdProductionQuantityLimits } from "react-icons/md";
 
 export default function Header() {
   const { isOpen, onToggle } = useDisclosure();
@@ -60,6 +67,8 @@ export default function Header() {
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
+            as="a"
+            href="/"
           >
             Logo
           </Text>
@@ -69,26 +78,57 @@ export default function Header() {
           </Flex>
         </Flex>
 
+        <Menu>
+          <MenuButton _hover={{ bg: "gray.100" }} p={2} borderRadius={8}>
+            <Flex alignItems="center" color="black">
+              <Image
+                src="/slide/mon9.jpg"
+                borderRadius="50%"
+                mr={1}
+                boxSize="35px"
+              />
+              Nguyễn Văn A
+            </Flex>
+          </MenuButton>
+          <MenuList zIndex={10}>
+            <MenuItem as="a" href="/booth-manage">
+              <Flex alignItems="center" color="black">
+                <FaPersonBooth />
+                <Text ml={4} fontSize="18px">
+                  私のブース
+                </Text>
+              </Flex>
+            </MenuItem>
+            <MenuItem as="a" href="/product">
+              <Flex alignItems="center" color="black">
+                <MdProductionQuantityLimits />
+                <Text ml={4} fontSize="18px">
+                  製品リスト
+                </Text>
+              </Flex>
+            </MenuItem>
+            <MenuItem as="a" href="/login">
+              <Flex alignItems="center" color="black">
+                <BiLogOut />
+                <Text ml={4} fontSize="18px">
+                  サインアウト
+                </Text>
+              </Flex>
+            </MenuItem>
+          </MenuList>
+        </Menu>
+
         <Flex alignItems="center" as={"a"} href={"/login"}>
           <FaUser />
           <Button ml="2px" fontSize={"sm"} fontWeight={400} variant={"link"}>
             Sign In
           </Button>
-          <Button
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"/signup"}
-          >
-            Sign Up
-          </Button>
-      </Flex>
-
-      <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
-        </Collapse>
         </Flex>
+
+        <Collapse in={isOpen} animateOpacity>
+          <MobileNav />
+        </Collapse>
+      </Flex>
     </Box>
   );
 }
