@@ -8,7 +8,7 @@ import {
   useDisclosure,
   FormControl,
   FormLabel,
-  Image
+  Image,
 } from "@chakra-ui/react";
 import React from "react";
 import CardProduct from "../../components/CardProduct";
@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 
 export default function Product() {
-   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
   const inputRef = React.useRef(null);
   const handleClick = () => {
@@ -61,7 +61,7 @@ export default function Product() {
             width={"200px"}
             marginLeft={5}
           >
-            製品情報を編集
+            商品を追加
           </Button>
         </Flex>
       </Flex>
@@ -91,8 +91,8 @@ export default function Product() {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader> 製品情報を編集</ModalHeader>
-          <ModalBody >
+          <ModalHeader> 商品を追加</ModalHeader>
+          <ModalBody>
             <Flex flexDirection={"row"} justifyContent={"space-between"}>
               <Image
                 boxSize="170px"
@@ -104,7 +104,7 @@ export default function Product() {
                 <Flex>
                   <FormControl ml={5} width={"45%"}>
                     <FormLabel>名前</FormLabel>
-                    <Input ref={initialRef} placeholder="名前"/>
+                    <Input ref={initialRef} placeholder="名前" />
                   </FormControl>
                   <FormControl ml={5} width={"45%"}>
                     <FormLabel> 価格 </FormLabel>
@@ -125,7 +125,13 @@ export default function Product() {
                 display={"none"}
                 ref={inputRef}
               ></Input>
-              <Button colorScheme="teal" onClick={handleClick} size="xs" width={170} mt={3}>
+              <Button
+                colorScheme="teal"
+                onClick={handleClick}
+                size="xs"
+                width={170}
+                mt={3}
+              >
                 写真をアップロード
               </Button>
             </Flex>

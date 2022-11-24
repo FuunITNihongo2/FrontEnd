@@ -17,7 +17,7 @@ import { useState } from "react";
 import Footer from "../../layout/Footer";
 import { AiFillEye, AiFillEyeInvisible, AiFillLock } from "react-icons/ai";
 import { MdEmail } from "react-icons/md";
-export default function SplitScreen() {
+export default function Login() {
   const [password, setPassword] = useState("");
   const [typeP, setTypeP] = useState("password");
   const [iconP, setIconP] = useState(<AiFillEyeInvisible />);

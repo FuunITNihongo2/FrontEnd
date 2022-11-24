@@ -15,9 +15,15 @@ import { ImLocation } from "react-icons/im";
 import { VscLayersActive } from "react-icons/vsc";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { SiVirustotal } from "react-icons/si";
+import { useNavigate } from "react-router-dom";
 import CardProduct from "../../components/CardProduct";
+import EditBooth from "../EditBooth";
 
-export default function BoothDetail() {
+export default function BoothManage() {
+  const navigate = useNavigate();
+  const navigateProduct = () => {
+    navigate("/product");
+  };
   return (
     <Stack minH="100vh" p={6} bg="rgba(0,0,0,0.05)" spacing={6}>
       <Flex bg="white" boxShadow="2xl" borderRadius={8}>
@@ -79,6 +85,7 @@ export default function BoothDetail() {
             </Box>
             <Text color="green.500">アクティブ</Text>
           </Flex>
+          <EditBooth />
         </Box>
       </Flex>
       <Box bg="white" boxShadow="2xl" borderRadius={8} py={3}>
@@ -92,7 +99,12 @@ export default function BoothDetail() {
           <CardProduct />
         </Grid>
         <Flex alignItems={"center"} justifyContent={"center"}>
-          <Button colorScheme="teal" variant="solid" size="lg">
+          <Button
+            colorScheme="teal"
+            variant="solid"
+            size="lg"
+            onClick={navigateProduct}
+          >
             もっと見る
           </Button>
         </Flex>
