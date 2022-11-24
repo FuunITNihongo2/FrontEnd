@@ -1,5 +1,5 @@
-import React from 'react';
-import './HeaderCustomer.scss';
+import React from "react";
+import "../HeaderCustomer/HeaderCustomer.scss";
 
 function HederCustomer({title,icon,text,clickShow}) {
     return (
@@ -22,7 +22,7 @@ function HederCustomer({title,icon,text,clickShow}) {
 
             </div>
         </div>
-    )
+  );
 }
 
-export default HederCustomer
+export default HederCustomer;
