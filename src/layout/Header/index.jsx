@@ -74,12 +74,21 @@ export default function Header() {
           <Button ml="2px" fontSize={"sm"} fontWeight={400} variant={"link"}>
             Sign In
           </Button>
-        </Flex>
+          <Button
+            as={"a"}
+            fontSize={"sm"}
+            fontWeight={400}
+            variant={"link"}
+            href={"/signup"}
+          >
+            Sign Up
+          </Button>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
-      </Collapse>
+        </Collapse>
+        </Flex>
     </Box>
   );
 }

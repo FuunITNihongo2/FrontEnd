@@ -9,6 +9,7 @@ import Layout from "./layout";
 import BoothDetail from "./page/BoothDetail";
 import Admin from './page/Admin';
 import ProductList from './page/Admin/Products/ProductList/ProductList';
+import Product from "./page/Product";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="" element={<Home />} />
           <Route path="booth-details" element={<BoothDetail />} />
+          <Route path="product" element={<Product/>} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/admin/booths" exact="true"  element={<ProductList/>}/>
