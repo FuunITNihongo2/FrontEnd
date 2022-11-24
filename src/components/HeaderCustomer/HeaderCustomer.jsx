@@ -8,11 +8,9 @@ function HederCustomer({title,icon,text,clickShow}) {
                 <div className="customer__left">
                     <h3>{title}</h3>
                     <div className="left__list">
-                        <a href="a">Dashboard</a>
+                        <a href="a">Admin</a>
                         <span><i className="fas fa-angle-right"></i></span>
-                        <a href="a">Management</a>
-                        <span><i className="fas fa-angle-right"></i></span>
-                        <a className="a" href= "s">Customers</a>
+                        <a className="a" href= "s">Booths</a>
                     </div>
                 </div>
                 <div className="customer__right">
