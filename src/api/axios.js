@@ -1,27 +1,38 @@
-import queryString from "query-string";
-const { default: axios } = require("axios");
-const instance = axios.create({
-  baseURL: "https://backend-et52mqssfq-as.a.run.app/api/",
+import axios from 'axios'
+import queryString from 'query-string';
+import { BASE_URL } from '../constants';
+
+const axiosInstace = axios.create({
+  baseURL: BASE_URL, 
   headers: {
-    "content-type": "application/json;charset=UTF-8",
-    Accept: "application/json",
-    "X-API-KEY": "1xqiK5VEsE4T7PkLCPdJVhyIkfGS4JTkzuU6Vc7j",
+    'Access-Control-Allow-Origin': '*',
+    'Content-Type': 'application/json',
   },
-  paramsSerializer: (params) => {
+  
+  paramsSerializer: params => {
     return queryString.stringify(params, {
       encode: false,
     });
   },
+})
+
+axiosInstace.interceptors.request.use(async config => {
+  const token = localStorage.getItem('token');
+  config.headers.Authorization = `Bearer ${token}`;
+  return config;
 });
-instance.interceptors.response.use(
-  (response) => {
-    if (response && response.data) {
+
+axiosInstace.interceptors.response.use(
+  response => {
+    if (response && response.data) { 
       return response.data;
     }
     return response;
   },
-  (error) => {
+  error => {
     throw error;
-  }
+  },
 );
-export default instance;
+
+
+export default axiosInstace

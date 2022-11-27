@@ -1,0 +1,114 @@
+.sidebar {
+  flex-basis: 20%;
+  max-width: 280px;
+  height: 100vh;
+  position: absolute;
+  top: 64px;
+  overflow-y: scroll;
+  background-color: #222B36;
+}
+.sidebar .user-card {
+  border-top: 1px solid rgba(151, 147, 147, 0.205);
+  border-bottom: 1px solid rgba(151, 147, 147, 0.205);
+  padding: 16px;
+}
+.sidebar .user-border {
+  background-color: rgb(23, 28, 36);
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+}
+.sidebar .user-border img {
+  width: 48px;
+  border-radius: 50%;
+}
+.sidebar .user-border h4 {
+  margin: 0px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.57;
+  color: rgb(255, 255, 255);
+}
+.sidebar .user-border .user-text {
+  margin-left: 16px;
+}
+.sidebar .user-border h6 {
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  color: rgb(145, 158, 171);
+}
+.sidebar .user-border h6 span {
+  margin: 0px;
+  color: rgb(104, 142, 255);
+  text-decoration: none;
+}
+.sidebar .title-sidebar {
+  color: rgb(255, 255, 255);
+  font-size: 0.75rem;
+  line-height: 2.5;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.sidebar .sidebar-list {
+  margin-bottom: 58px;
+  padding: 15px 16px;
+}
+.sidebar .sidebar-list .list-overview {
+  list-style: none;
+}
+.sidebar .sidebar-list .list-overview a {
+  display: flex;
+  font-size: 14px;
+  color: #919eab;
+  font-weight: 500;
+  transition: 0.3s;
+  padding: 15px;
+  border-radius: 10px;
+  align-items: center;
+}
+.sidebar .sidebar-list .list-overview a:hover {
+  background-color: rgba(104, 142, 255, 0.08);
+}
+.sidebar .sidebar-list .list-overview h4 {
+  display: flex;
+  font-size: 14px;
+  color: #919eab;
+  font-weight: 500;
+  transition: 0.3s;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 10px;
+  align-items: center;
+}
+.sidebar .sidebar-list .list-overview h4:hover {
+  background-color: rgba(104, 142, 255, 0.08);
+}
+.sidebar .sidebar-list .list-overview span {
+  margin-right: 5px;
+}
+.sidebar .sidebar-list .list-overview p {
+  margin-left: 5px;
+  flex: 1;
+  margin-bottom: 0;
+}
+.sidebar .sidebar-list .list-overview .dropmenu {
+  transition: 0.3s ease-in-out;
+  max-height: 0;
+  overflow: hidden;
+}
+.sidebar .sidebar-list .list-overview .dropmenu p {
+  padding-left: 15px;
+}
+.sidebar .sidebar-list .list-overview .dropmenu.show {
+  max-height: 80vh;
+}
+.sidebar .sidebar-list .view2 p + span {
+  transition: 0.3s ease-in-out;
+  transform: rotate(270deg);
+}
+.sidebar .sidebar-list .view2 p + span.active {
+  transform: rotate(360deg);
+}/*# sourceMappingURL=Sidebar.css.map */

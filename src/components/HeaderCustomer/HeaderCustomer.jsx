@@ -1,7 +1,7 @@
 import React from "react";
-import "../HeaderCustomer/HeaderCustomer.scss";
+import "./HeaderCustomer.css";
 
-function HederCustomer({title,icon,text,clickShow}) {
+function HederCustomer({title,icon,text,onShow}) {
     return (
         <div className="HederCustomer">
             <div className="header__center">
@@ -14,7 +14,7 @@ function HederCustomer({title,icon,text,clickShow}) {
                     </div>
                 </div>
                 <div className="customer__right">
-                    <div className="button" onClick={clickShow}>
+                    <div className="button" onClick={onShow}>
                         <span><i className={icon}></i></span>
                         <div className="add">{text}</div>
                     </div>

@@ -29,9 +29,7 @@
 .HederCustomer .a{
     color: rgb(145, 158, 171);
 }
-.HederCustomer span{
-   
-}
+
 .HederCustomer .customer__right{
     padding-right: 24px;
 }
@@ -44,4 +42,5 @@
     line-height: 1.75;
     border-radius: 16px;
     background-color: rgb(104, 142, 255);
+    cursor: pointer;
 }
