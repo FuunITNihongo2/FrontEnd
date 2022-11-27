@@ -1,0 +1,1 @@
+export const BASE_URL = "https://backend-et52mqssfq-as.a.run.app/api"

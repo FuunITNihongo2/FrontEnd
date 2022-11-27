@@ -1,0 +1,107 @@
+.header {
+  min-height: 64px;
+  background-color: #222B36;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__logo {
+  margin-left: 25px;
+}
+.header__menu {
+  display: flex;
+  align-items: center;
+}
+.header__menu li {
+  cursor: pointer;
+  padding: 5px 8px;
+}
+.header__menu li span {
+  font-size: 18px;
+  color: white;
+}
+.header__menu li img {
+  width: 32px;
+}
+.header__menu li.flag {
+  position: relative;
+}
+.header__menu li.flag img {
+  border-radius: 50%;
+}
+.header__menu li.flag .logout-popup {
+  position: absolute;
+  background: #222B36;
+  top: 100%;
+  right: 20px;
+  transition: 0.4s ease-in;
+  opacity: 0;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  box-shadow: 2px 3px 4px 3px rgba(19, 17, 17, 0.644);
+  border-radius: 10px;
+}
+.header__menu li.flag .logout-popup.active {
+  width: 200px;
+  opacity: 1;
+  height: auto;
+}
+.header__menu li.flag .logout-popup .itemv {
+  padding: 15px;
+}
+.header__menu li.flag .logout-popup h2 {
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.57;
+  color: rgb(255, 255, 255);
+  margin: 0;
+}
+.header__menu li.flag .logout-popup p {
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.57;
+  color: rgb(145, 158, 171);
+  margin: 0;
+}
+.header__menu li.flag .logout-popup .card__item {
+  border-top: 1px solid rgba(136, 132, 132, 0.301);
+  padding: 15px;
+}
+.header__menu li.flag .logout-popup .card__item h4 {
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.57;
+  color: rgb(255, 255, 255);
+}
+.header__menu li.flag .logout-popup .card__item span {
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.57;
+  color: rgb(255, 255, 255);
+}
+.header__menu li.flag .logout-popup .loginv {
+  color: white;
+  border: 1px solid rgba(104, 142, 255, 0.5);
+  color: rgb(104, 142, 255);
+  text-transform: none;
+  display: block;
+  padding: 5px 15px;
+  border-radius: 16px;
+  margin: 10px 10px;
+  transition: 0.3s;
+  text-align: center;
+}
+.header__menu li.flag .logout-popup .loginv:hover {
+  text-decoration: none;
+  background-color: rgba(104, 142, 255, 0.08);
+  border: 1px solid rgb(104, 142, 255);
+}
+
+ul, ol {
+  margin: 0;
+  list-style: none;
+}/*# sourceMappingURL=Header.css.map */

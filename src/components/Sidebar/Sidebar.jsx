@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './Sidebar.scss'
+import './Sidebar.css'
 import { NavLink } from 'react-router-dom'
 function Sidebar() {
   const [dropShow, setDropShow] = useState([{ arrow: false },
