@@ -10,6 +10,7 @@ import BoothDetail from "./page/BoothDetail";
 import Product from "./page/Product";
 import BoothManage from "./page/BoothManage";
 import Booths from "./page/Admin/Booths/Booths";
+import ChangePassword from "./page/ChangePassword"
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
           <Route path="product" element={<Product />} />
         </Route>
         <Route path="/login" element={<Login />} />
-        <Route path="/admin/booths" exact="true"  element={<Booths/>}/>
+        <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/admin/booths" exact="true" element={<Booths />} />
       </Routes>
     </Box>
   );
