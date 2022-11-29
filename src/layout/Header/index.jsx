@@ -26,7 +26,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-import { FaUser, FaPersonBooth } from "react-icons/fa";
+import { FaUser, FaPersonBooth, FaUserEdit } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
 import { MdProductionQuantityLimits } from "react-icons/md";
 
@@ -104,6 +104,14 @@ export default function Header() {
                 <MdProductionQuantityLimits />
                 <Text ml={4} fontSize="18px">
                   製品リスト
+                </Text>
+              </Flex>
+            </MenuItem>
+            <MenuItem as="a" href="/change-password">
+              <Flex alignItems="center" color="black">
+                <FaUserEdit />
+                <Text ml={4} fontSize="18px">
+                  パスワードを変更
                 </Text>
               </Flex>
             </MenuItem>
