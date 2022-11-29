@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import HeaderCustomer from "../../../components/HeaderCustomer/HeaderCustomer";
+import HeaderCustomer from "../../../../components/HeaderCustomer/HeaderCustomer";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import dayjs from "dayjs";
 
@@ -89,7 +89,7 @@ function ProductList({ onSearch, currentTableData, onDeleteOpen, onEditOpen, onA
                     </td>
                     <td className="Actions">
                       <DeleteIcon
-                        onClick={() => onDeleteOpen(item?.id)}
+                        onClick={() => onDeleteOpen(item)}
                         style={{
                           marginRight: "15px",
                           color: "red",
