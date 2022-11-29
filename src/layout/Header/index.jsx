@@ -26,7 +26,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-import { FaUser, FaPersonBooth, FaUserEdit } from "react-icons/fa";
+import { FaUser, FaPersonBooth, FaAudioDescription } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
 import { MdProductionQuantityLimits } from "react-icons/md";
 
@@ -107,11 +107,27 @@ export default function Header() {
                 </Text>
               </Flex>
             </MenuItem>
-            <MenuItem as="a" href="/change-password">
+            <MenuItem as="a" href="/admin/booths">
               <Flex alignItems="center" color="black">
-                <FaUserEdit />
+                <FaAudioDescription />
                 <Text ml={4} fontSize="18px">
-                  パスワードを変更
+                ブース管理
+                </Text>
+              </Flex>
+            </MenuItem>
+            <MenuItem as="a" href={`/admin/booth/${1}/product`}>
+              <Flex alignItems="center" color="black">
+                <FaAudioDescription />
+                <Text ml={4} fontSize="18px">
+                製品管理
+                </Text>
+              </Flex>
+            </MenuItem>
+            <MenuItem as="a" href="/product">
+              <Flex alignItems="center" color="black">
+                <MdProductionQuantityLimits />
+                <Text ml={4} fontSize="18px">
+                  製品リスト
                 </Text>
               </Flex>
             </MenuItem>
