@@ -10,8 +10,8 @@ import BoothDetail from "./page/BoothDetail";
 import Product from "./page/Product";
 import BoothManage from "./page/BoothManage";
 import Booths from "./page/Admin/Booths/Booths";
+import Products from "./page/Admin/Products/Products";
 import ChangePassword from "./page/ChangePassword"
-
 function App() {
   return (
     <Box minH={"100vh"} w="100vw" bg="#ffffff">
@@ -24,8 +24,9 @@ function App() {
           <Route path="product" element={<Product />} />
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/admin/booths" exact="true"  element={<Booths/>}/>
+        <Route path="/admin/booth/:id/products" exact="true"  element={<Products/>}/>
         <Route path="/change-password" element={<ChangePassword />} />
-        <Route path="/admin/booths" exact="true" element={<Booths />} />
       </Routes>
     </Box>
   );
