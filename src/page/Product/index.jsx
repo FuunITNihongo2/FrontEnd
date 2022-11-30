@@ -20,6 +20,8 @@ import {
   ModalFooter,
   ModalBody,
 } from "@chakra-ui/react";
+import "./product.css"
+
 
 export default function Product() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -28,6 +30,8 @@ export default function Product() {
   const handleClick = () => {
     inputRef.current.click();
   };
+ 
+
   return (
     <Box bg="rgba(0,0,0,0.05)" p={5} borderRadius={8}>
       <Flex flexDirection={"row"} justifyContent={"space-between"} px={10}>
@@ -65,16 +69,9 @@ export default function Product() {
           </Button>
         </Flex>
       </Flex>
-      <Grid templateColumns="repeat(4, 2fr)" gap={6} px={10} py={3}>
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-      </Grid>
+      <Grid templateColumns="repeat(1, 2fr)" gap={6} px={10} py={3}>
+          <CardProduct idCard="1" />
+        </Grid>
       <Flex alignItems={"center"} justifyContent={"center"} mt={5}>
         <Button colorScheme="teal" variant="solid" size="lg">
           もっと見る

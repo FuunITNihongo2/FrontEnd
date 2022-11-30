@@ -92,11 +92,8 @@ export default function BoothManage() {
         <Text px={10} py={3} fontSize="4xl" fontWeight={700}>
           製品ポートフォリオ
         </Text>
-        <Grid templateColumns="repeat(4, 1fr)" gap={6} px={10}>
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
+        <Grid templateColumns="repeat(1, 1fr)" gap={6} px={10} py={3}>
+          <CardProduct idCard="1" />
         </Grid>
         <Flex alignItems={"center"} justifyContent={"center"}>
           <Button
