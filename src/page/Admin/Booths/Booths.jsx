@@ -131,6 +131,8 @@ function Booths() {
         onDeleteOpen={handleDeleteOpen}
         onEditOpen={handleEditOpen}
         onAddOpen={onAddOpen}
+        title="Booth list"
+        addtext = "New booth"
       />
       <div className="center">
         {booths && (
