@@ -4,16 +4,16 @@ import HeaderCustomer from "../../../../components/HeaderCustomer/HeaderCustomer
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import dayjs from "dayjs";
 
-function ProductList({ onSearch, currentTableData, onDeleteOpen, onEditOpen, onAddOpen }) {
+function ProductList({ onSearch, currentTableData, onDeleteOpen, onEditOpen, onAddOpen, title, addtext }) {
   return (
     <div className="ProductList">
       <div className="list__center">
         <div className="list__table">
           <div className="table__center">
             <HeaderCustomer
-              title="booth list"
+              title={title}
               icon={"fas fa-plus"}
-              text="New booth"
+              text={addtext}
               onShow={onAddOpen}
             />
             <div className="table__input">

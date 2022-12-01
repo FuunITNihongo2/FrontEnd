@@ -128,6 +128,8 @@ function Products() {
         onDeleteOpen={handleDeleteOpen}
         onEditOpen={handleEditOpen}
         onAddOpen={onAddOpen}
+        title="Product list"
+        addtext = "New product"
       />
       <div className="center">
         {products && (
