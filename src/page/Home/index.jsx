@@ -1,10 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slide from "../../components/Slide";
-import CardItem from "../../components/CardItem";
 import BoothCard from "../../components/BoothCard";
 import { Text, Button, Flex, Box } from "@chakra-ui/react";
 import { Grid } from "@chakra-ui/react";
+import { getHome } from "../../api";
+import CardProduct from "../../components/CardProduct";
 function Home() {
+  const [listBooths, setListBooths] = useState([]);
+  const [Items, setItems] = useState([]);
+  const fechData = async () => {
+    try {
+      await getHome().then((res) => {
+        setListBooths(
+          res.mostPopularBooths.map((booth) => {
+            return {
+              id: booth.id,
+              name: booth.name,
+              img: booth.images[0].link,
+            };
+          })
+        );
+
+        setItems(
+          res.mostPopularItems.map((item) => {
+            return {
+              id: item.id,
+              name: item.name,
+              price: item.price,
+              dsc: item.description,
+              img: item.images[0].link,
+            };
+          })
+        );
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  useEffect(() => {
+    fechData();
+  }, []);
   return (
     <>
       <Slide />
@@ -14,16 +49,17 @@ function Home() {
             傑出したブース
           </Text>
           <Grid templateColumns="repeat(2, 1fr)" gap={6} px={10} py={3}>
-            <CardItem />
-            <CardItem />
-            <CardItem />
-            <CardItem />
+            {listBooths?.map((booth, index) => {
+              if (index < 4) return <BoothCard data={booth} />;
+            })}
           </Grid>
           <Flex alignItems={"center"} justifyContent={"center"} mt={5}>
             <Button
               colorScheme="teal"
               variant="solid"
               size="lg"
+              as="a"
+              href="/booths"
             >
               もっと見る
             </Button>
@@ -35,17 +71,12 @@ function Home() {
             ブース
           </Text>
           <Grid templateColumns="repeat(4, 1fr)" gap={6} px={10}>
-            <BoothCard />
-            <BoothCard />
-            <BoothCard />
-            <BoothCard />
+            {Items?.map((item, index) => {
+              if (index < 4) return <CardProduct data={item} />;
+            })}
           </Grid>
           <Flex alignItems={"center"} justifyContent={"center"}>
-            <Button
-              colorScheme="teal"
-              variant="solid"
-              size="lg"
-            >
+            <Button colorScheme="teal" variant="solid" size="lg">
               もっと見る
             </Button>
           </Flex>

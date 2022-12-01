@@ -11,7 +11,9 @@ import Product from "./page/Product";
 import BoothManage from "./page/BoothManage";
 import Booths from "./page/Admin/Booths/Booths";
 import Products from "./page/Admin/Products/Products";
-import ChangePassword from "./page/ChangePassword"
+import ChangePassword from "./page/ChangePassword";
+import ListBooth from "./page/ListBooth";
+import ProductManage from "./page/ProductManage";
 function App() {
   return (
     <Box minH={"100vh"} w="100vw" bg="#ffffff">
@@ -19,13 +21,19 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="" element={<Home />} />
-          <Route path="booth-details" element={<BoothDetail />} />
+          <Route path="booths" element={<ListBooth />} />
+          <Route path="booth-details/:id" element={<BoothDetail />} />
           <Route path="booth-manage" element={<BoothManage />} />
-          <Route path="product" element={<Product />} />
+          <Route path="product/:id" element={<Product />} />
+          <Route path="product-manage" element={<ProductManage />} />
         </Route>
         <Route path="/login" element={<Login />} />
-        <Route path="/admin/booths" exact="true"  element={<Booths/>}/>
-        <Route path="/admin/booth/:id/products" exact="true"  element={<Products/>}/>
+        <Route path="/admin/booths" exact="true" element={<Booths />} />
+        <Route
+          path="/admin/booth/:id/products"
+          exact="true"
+          element={<Products />}
+        />
         <Route path="/change-password" element={<ChangePassword />} />
       </Routes>
     </Box>
