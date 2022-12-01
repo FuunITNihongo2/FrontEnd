@@ -1,67 +1,58 @@
-import {
-  Box,
-  Center,
-  Text,
-  Stack,
-  Avatar,
-  Image
-} from "@chakra-ui/react";
+import { Box, Center, Image, Heading, Button } from "@chakra-ui/react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function blogPostWithImage() {
+export default function BoothCard(props) {
+  const [style1, setStyle1] = useState(1);
+  const [style2, setStyle2] = useState(0);
+  const navigate = useNavigate();
+  const Navigate = () => {
+    navigate(`/booth-details/${props.data.id}`);
+  };
   return (
-    <Center py={3}>
+    <Center key={props.data.id}>
       <Box
-        maxW={"445px"}
-        w={"full"}
-        bg={"white"}
-        boxShadow={"2xl"}
-        rounded={"md"}
-        p={6}
         overflow={"hidden"}
+        onMouseEnter={() => {
+          setStyle1(0.8);
+          setStyle2(1);
+        }}
+        onMouseLeave={() => {
+          setStyle1(1);
+          setStyle2(0);
+        }}
       >
         <Box
-          h={"210px"}
-          bg={"gray.100"}
-          mt={-6}
-          mx={-6}
-          mb={6}
-          pos={"relative"}
+          w={"600px"}
+          h="350px"
+          rounded={"md"}
+          cursor="pointer"
+          opacity={style1}
         >
-          <Image src="/slide/hinh5.jpg" layout={"fill"} />
-        </Box>
-        <Stack>
-          <Text
-            color={"green.500"}
-            textTransform={"uppercase"}
-            fontWeight={800}
-            fontSize={"sm"}
-            letterSpacing={1.1}
-          >
-            ブース名
-          </Text>
-          {/* <Heading
-            color={('gray.700', 'black')}
-            fontSize={'2xl'}
-            fontFamily={'body'}>
-            Boost your conversion rate
-          </Heading> */}
-          <Text color={"gray.500"}>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-            et ea rebum.
-          </Text>
-        </Stack>
-        <Stack mt={6} direction={"row"} spacing={4} align={"center"}>
-          <Avatar
-            src={"https://avatars0.githubusercontent.com/u/1164541?v=4"}
-            alt={"Author"}
+          <Image
+            src={props.data.img}
+            layout={"fill"}
+            w="100%"
+            h="100%"
+            objectFit="cover"
+            rounded={"md"}
           />
-          <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-            <Text fontWeight={600}>ブースオーナー</Text>
-            <Text color={'gray.500'}>2022 </Text>
-          </Stack>
-        </Stack>
+          <Heading color="white" pos="relative" bottom="350px" left="20px">
+            {props.data.name}
+          </Heading>
+        </Box>
+        <Button
+          variant="solid"
+          colorScheme="blue"
+          zIndex={10}
+          opacity={style2}
+          left="500px"
+          bottom="60px"
+          pos={"relative"}
+          onClick={Navigate}
+        >
+          見る
+        </Button>
       </Box>
     </Center>
   );
