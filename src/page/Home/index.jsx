@@ -5,6 +5,7 @@ import { Text, Button, Flex, Box } from "@chakra-ui/react";
 import { Grid } from "@chakra-ui/react";
 import { getHome } from "../../api";
 import CardProduct from "../../components/CardProduct";
+
 function Home() {
   const [listBooths, setListBooths] = useState([]);
   const [Items, setItems] = useState([]);
@@ -48,14 +49,14 @@ function Home() {
           <Text px={10} py={3} fontSize="4xl" fontWeight={700}>
             傑出したブース
           </Text>
-          <Grid templateColumns="repeat(2, 1fr)" gap={6} px={10} py={3}>
+          <Grid templateColumns="repeat(4, 1fr)" gap={6} px={10} py={3}>
             {listBooths?.map((booth, index) => {
-              if (index < 4) return <BoothCard data={booth} />;
+              if (index < 8) return <BoothCard data={booth} />;
             })}
           </Grid>
           <Flex alignItems={"center"} justifyContent={"center"} mt={5}>
             <Button
-              colorScheme="teal"
+              colorScheme="blue"
               variant="solid"
               size="lg"
               as="a"
@@ -68,15 +69,15 @@ function Home() {
 
         <Box bg="rgba(0,0,0,0.05)" p={5} borderRadius={8} mt={5}>
           <Text px={10} py={3} fontSize="4xl" fontWeight={700}>
-            ブース
+          優れた食品
           </Text>
-          <Grid templateColumns="repeat(4, 1fr)" gap={6} px={10}>
+          <Grid templateColumns="repeat(5, 1fr)">
             {Items?.map((item, index) => {
-              if (index < 4) return <CardProduct data={item} />;
+              if (index < 10) return <CardProduct data={item} />;
             })}
           </Grid>
           <Flex alignItems={"center"} justifyContent={"center"}>
-            <Button colorScheme="teal" variant="solid" size="lg">
+            <Button  colorScheme="blue" variant="solid" size="lg" as="a" href="/products">
               もっと見る
             </Button>
           </Flex>

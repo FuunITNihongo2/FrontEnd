@@ -34,10 +34,12 @@ import { useNavigate } from "react-router-dom";
 export default function HeaderLogin() {
   const { isOpen, onToggle } = useDisclosure();
   const navigate = useNavigate();
+
   const logout = () => {
     localStorage.removeItem("user");
     navigate("/login");
   };
+  
   return (
     <Box>
       <Flex

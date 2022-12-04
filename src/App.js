@@ -14,6 +14,8 @@ import Products from "./page/Admin/Products/Products";
 import ChangePassword from "./page/ChangePassword";
 import ListBooth from "./page/ListBooth";
 import ProductManage from "./page/ProductManage";
+import ListProduct from "./page/ListProduct";
+
 function App() {
   return (
     <Box minH={"100vh"} w="100vw" bg="#ffffff">
@@ -22,10 +24,12 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="" element={<Home />} />
           <Route path="booths" element={<ListBooth />} />
-          <Route path="booth-details/:id" element={<BoothDetail />} />
+          <Route path="booth-detail/:id" element={<BoothDetail />} />
           <Route path="booth-manage" element={<BoothManage />} />
           <Route path="product/:id" element={<Product />} />
           <Route path="product-manage" element={<ProductManage />} />
+          <Route path="products" element={<ListProduct/>} />
+
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/admin/booths" exact="true" element={<Booths />} />

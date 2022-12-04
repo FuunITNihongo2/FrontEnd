@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Grid, Text, Input } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import CardProduct from "../../components/CardProduct";
-import { getListItem } from "../../api";
+import { getListProducts } from "../../api";
 import { useParams } from "react-router-dom";
 
 export default function Product() {
@@ -9,7 +9,7 @@ export default function Product() {
   const [Items, setItems] = useState([]);
   const fechItems = async () => {
     try {
-      await getListItem(Number(params.id)).then((res) => {
+      await getListProducts(Number(params.id)).then((res) => {
         setItems(
           res.items.map((item) => {
             return {

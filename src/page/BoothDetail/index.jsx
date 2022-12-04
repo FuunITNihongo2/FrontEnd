@@ -17,7 +17,7 @@ import { AiFillCheckCircle, AiFillMinusCircle } from "react-icons/ai";
 import { SiVirustotal } from "react-icons/si";
 import CardProduct from "../../components/CardProduct";
 import { useNavigate, useParams } from "react-router-dom";
-import { getBooth, getListItem } from "../../api";
+import { getBooth, getListProductsByBoothId } from "../../api";
 
 export default function BoothDetail() {
   const params = useParams();
@@ -38,7 +38,6 @@ export default function BoothDetail() {
           active: res.booth.active_state,
           img: res.booth.images[0].link,
         });
-        console.log(res.booth.images[0].link);
       });
     } catch (error) {
       console.log(error.message);
@@ -50,7 +49,7 @@ export default function BoothDetail() {
 
   const fechItems = async () => {
     try {
-      await getListItem(Number(params.id)).then((res) => {
+      await getListProductsByBoothId(Number(params.id)).then((res) => {
         setItems(
           res.items.map((item) => {
             return {
@@ -70,6 +69,7 @@ export default function BoothDetail() {
   useEffect(() => {
     fechItems();
   }, []);
+
   return (
     <Stack minH="100vh" p={6} bg="rgba(0,0,0,0.05)" spacing={6}>
       <Flex bg="white" boxShadow="2xl" borderRadius={8}>
@@ -146,21 +146,11 @@ export default function BoothDetail() {
         <Text px={10} py={3} fontSize="4xl" fontWeight={700}>
           製品ポートフォリオ
         </Text>
-        <Grid templateColumns="repeat(4, 1fr)" gap={6} px={10}>
+        <Grid templateColumns="repeat(5, 1fr)" px={10}>
           {Items?.map((item, index) => {
-            if (index < 4) return <CardProduct data={item} />;
+            return <CardProduct data={item} />;
           })}
         </Grid>
-        <Flex alignItems={"center"} justifyContent={"center"}>
-          <Button
-            colorScheme="teal"
-            variant="solid"
-            size="lg"
-            onClick={navigateProduct}
-          >
-            もっと見る
-          </Button>
-        </Flex>
       </Box>
     </Stack>
   );

@@ -15,7 +15,7 @@ export default function CardItem() {
   
   const navigate = useNavigate();
    const navigateBooth = () => {
-    navigate('/booth-details');
+    navigate('/booth-detail');
   };
 
     return (

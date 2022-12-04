@@ -25,6 +25,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [typeP, setTypeP] = useState("password");
   const [iconP, setIconP] = useState(<AiFillEyeInvisible />);
+
   const showPass = () => {
     if (typeP === "password") {
       setTypeP("text");
@@ -35,7 +36,7 @@ export default function Login() {
     }
   };
 
-  const Login = async () => {
+  const handleLogin = async () => {
     const user = {
       email: email,
       password: password,
@@ -50,6 +51,7 @@ export default function Login() {
       console.log(error.message);
     }
   };
+
   return (
     <Box>
       <Stack
@@ -87,7 +89,6 @@ export default function Login() {
               {password !== "" ? (
                 <Flex
                   pos="absolute"
-                  // left="440px"
                   right={2}
                   top="52px"
                   cursor={"pointer"}
@@ -132,7 +133,7 @@ export default function Login() {
                 colorScheme={"blue"}
                 variant={"solid"}
                 type="submit"
-                onClick={Login}
+                onClick={handleLogin}
               >
                 Sign in
               </Button>
