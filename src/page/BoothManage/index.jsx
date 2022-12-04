@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 import CardProduct from "../../components/CardProduct";
 import EditBooth from "../EditBooth";
 import { getBooth } from "../../api";
-import { getListItem } from "../../api";
+import { getListProducts } from "../../api";
 
 export default function BoothManage() {
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ export default function BoothManage() {
 
   const fechItems = async () => {
     try {
-      await getListItem(JSON.parse(localStorage.getItem("user")).booth).then(
+      await getListProducts(JSON.parse(localStorage.getItem("user")).booth).then(
         (res) => {
           setItems(
             res.items.map((item) => {

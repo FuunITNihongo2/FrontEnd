@@ -1,58 +1,54 @@
-import { Box, Center, Image, Heading, Button } from "@chakra-ui/react";
+import { Stack, Text, Image, Heading, Avatar, Center,Box, useColorModeValue } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function BoothCard(props) {
-  const [style1, setStyle1] = useState(1);
-  const [style2, setStyle2] = useState(0);
+export default function BoothCard({data}) {
+ 
   const navigate = useNavigate();
   const Navigate = () => {
-    navigate(`/booth-details/${props.data.id}`);
+    navigate(`/booth-detail/${data.id}`);
   };
+
   return (
-    <Center key={props.data.id}>
+    <Center py={6}>
       <Box
-        overflow={"hidden"}
-        onMouseEnter={() => {
-          setStyle1(0.8);
-          setStyle2(1);
+        maxW={'445px'}
+        w={'full'}
+        bg={useColorModeValue('white', 'gray.900')}
+        boxShadow={'2xl'}
+        rounded={'md'}
+        p={6}
+        overflow={'hidden'}
+        cursor='pointer'
+        _hover={{
+          opacity: '0.8',
         }}
-        onMouseLeave={() => {
-          setStyle1(1);
-          setStyle2(0);
-        }}
-      >
+        onClick={Navigate}
+        >
         <Box
-          w={"600px"}
-          h="350px"
-          rounded={"md"}
-          cursor="pointer"
-          opacity={style1}
-        >
+          h={'210px'}
+          bg={'gray.100'}
+          mt={-6}
+          mx={-6}
+          mb={6}
+          pos={'relative'}>
           <Image
-            src={props.data.img}
-            layout={"fill"}
-            w="100%"
-            h="100%"
-            objectFit="cover"
-            rounded={"md"}
+            src={data.img}
+            layout={'fill'}
+            height={210}
+            width="100%"
           />
-          <Heading color="white" pos="relative" bottom="350px" left="20px">
-            {props.data.name}
-          </Heading>
         </Box>
-        <Button
-          variant="solid"
-          colorScheme="blue"
-          zIndex={10}
-          opacity={style2}
-          left="500px"
-          bottom="60px"
-          pos={"relative"}
-          onClick={Navigate}
-        >
-          見る
-        </Button>
+        <Stack>
+          <Heading
+            color={useColorModeValue('gray.700', 'white')}
+            fontSize={'2xl'}
+            fontFamily={'body'}>
+           {data.name}
+          </Heading>
+       
+        </Stack>
+       
       </Box>
     </Center>
   );

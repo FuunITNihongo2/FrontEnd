@@ -20,7 +20,7 @@ import {
   ModalFooter,
   ModalBody,
 } from "@chakra-ui/react";
-import { getListItem } from "../../api";
+import { getListProducts } from "../../api";
 
 export default function ProductManage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -32,7 +32,7 @@ export default function ProductManage() {
   const [Items, setItems] = useState([]);
   const fechItems = async () => {
     try {
-      await getListItem(JSON.parse(localStorage.getItem("user")).booth).then(
+      await getListProducts(JSON.parse(localStorage.getItem("user")).booth).then(
         (res) => {
           setItems(
             res.items.map((item) => {

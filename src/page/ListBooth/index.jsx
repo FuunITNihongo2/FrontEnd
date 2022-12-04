@@ -30,7 +30,7 @@ export default function ListBooth() {
       <Text py={3} fontSize="4xl" fontWeight={700} color="black" ml={5}>
         リストブース
       </Text>
-      <Grid templateColumns="repeat(2, 1fr)" gap={6} px={10} py={3}>
+      <Grid templateColumns="repeat(5, 1fr)" gap={6} px={10}>
         {listBooths?.map((booth, index) => {
           return <BoothCard data={booth} />;
         })}
