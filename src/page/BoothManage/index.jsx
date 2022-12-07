@@ -56,7 +56,7 @@ export default function BoothManage() {
       await getListProducts(JSON.parse(localStorage.getItem("user")).booth).then(
         (res) => {
           setItems(
-            res.items.map((item) => {
+            res.listOfItems.map((item) => {
               return {
                 id: item.id,
                 name: item.name,
