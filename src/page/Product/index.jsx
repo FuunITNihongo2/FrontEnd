@@ -1,17 +1,45 @@
-import { Box, Button, Flex, Grid, Text, Input } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import {
+  Box,
+  Button,
+  Flex,
+  Grid,
+  Text,
+  Input,
+  useDisclosure,
+  FormControl,
+  FormLabel,
+  Image,
+} from "@chakra-ui/react";
+import React, { useEffect, useRef, useState } from "react";
 import CardProduct from "../../components/CardProduct";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+} from "@chakra-ui/react";
 import { getListProducts } from "../../api";
-import { useParams } from "react-router-dom";
 
-export default function Product() {
-  const params = useParams();
+export default function ProductManage() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const initialRef = React.useRef(null);
+  const inputRef = useRef("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+
+  const handleClick = () => {
+    inputRef.current.click();
+  };
   const [Items, setItems] = useState([]);
   const fechItems = async () => {
     try {
-      await getListProducts(Number(params.id)).then((res) => {
+      await getListProducts(
+        JSON.parse(localStorage.getItem("user")).booth
+      ).then((res) => {
         setItems(
-          res.items.map((item) => {
+          res.listOfItems.map((item) => {
             return {
               id: item.id,
               name: item.name,
@@ -29,6 +57,30 @@ export default function Product() {
   useEffect(() => {
     fechItems();
   }, []);
+
+  const handleSearch = (searchTerm) => {
+    try {
+      setSearchTerm(searchTerm);
+      if (searchTerm !== "") {
+        const newData = Items.filter((item) => {
+          return Object.values(item)
+            .join("")
+            .toLowerCase("")
+            .includes(searchTerm.toLowerCase());
+        });
+        setSearchResult(newData);
+      } else {
+        setSearchResult(Items);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getSearch = () => {
+    handleSearch(inputRef.current.value);
+  };
+
   return (
     <Box bg="rgba(0,0,0,0.05)" p={5}>
       <Flex flexDirection={"row"} justifyContent={"space-between"} px={10}>
@@ -43,22 +95,31 @@ export default function Product() {
             maxWidth={"300px"}
             mr={5}
             borderColor={"blue.500"}
+            ref={inputRef}
+            value={searchTerm}
+            onChange={getSearch}
           />
           <Button
             colorScheme="teal"
+            onClick={onOpen}
             size="md"
             mt={5}
             variant={"solid"}
             width={"200px"}
+            marginLeft={5}
           >
-            製品を検索
+            商品を追加
           </Button>
         </Flex>
       </Flex>
       <Grid templateColumns="repeat(4, 1fr)" gap={6} px={10} py={3}>
-        {Items?.map((item) => {
-          return <CardProduct data={item} />;
-        })}
+        {searchTerm.length < 1
+          ? Items?.map((item, index) => {
+              return <CardProduct data={item} key={index} />;
+            })
+          : searchResult?.map((item, index) => {
+              return <CardProduct data={item} key={index} />;
+            })}
       </Grid>
     </Box>
   );
