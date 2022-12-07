@@ -24,6 +24,7 @@ export default function BoothCard({data}) {
           opacity: '0.8',
         }}
         onClick={Navigate}
+        h={310}
         >
         <Box
           h={'210px'}
