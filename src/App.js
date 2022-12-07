@@ -15,6 +15,7 @@ import ChangePassword from "./page/ChangePassword";
 import ListBooth from "./page/ListBooth";
 import ProductManage from "./page/ProductManage";
 import ListProduct from "./page/ListProduct";
+import ProductDetail from './page/ProductDetail'
 
 function App() {
   return (
@@ -25,8 +26,10 @@ function App() {
           <Route path="" element={<Home />} />
           <Route path="booths" element={<ListBooth />} />
           <Route path="booth-detail/:id" element={<BoothDetail />} />
+          <Route path="product-detail/:id" element={<ProductDetail />} />
+
           <Route path="booth-manage" element={<BoothManage />} />
-          <Route path="product" element={<Product />} />
+          <Route path="product/:id" element={<Product />} />
           <Route path="product-manage" element={<ProductManage />} />
           <Route path="products" element={<ListProduct/>} />
 
