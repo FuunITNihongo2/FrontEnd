@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useMemo } from "react";
-import Admin from "../../Admin";
-import { getListBooth, deleteBooth, editBooth, addBooth } from "../../../api";
+import Admin from "..";
+import { getListProducts, deleteProduct, editProduct, addProduct } from "../../../api";
 import Pagination from "../../../components/Pagination/Pagination";
 import ProductList from "./Table";
 import EditForm from "./EditForm";
+import { useParams } from "react-router-dom";
 
 import {
   Modal,
@@ -19,9 +20,9 @@ import {
 
 const PageSize = 10;
 
-function Booths() {
-  
-  const [booths, setBooths] = useState(null);
+function Products() {
+  const param = useParams();
+  const [products, setProducts] = useState(null);
   const {
     isOpen: isEditOpen,
     onOpen: onEditOpen,
@@ -40,10 +41,16 @@ function Booths() {
     onClose: onAddClose,
   } = useDisclosure();
 
-  const [itemActive, setItemActive] = useState({
-    name: "",
-    address: "",
-  });
+  const BASE_DATA = 
+    {
+      id:"",
+      name: "",
+      price: "",
+      description:"",
+      images: ""
+    }
+  
+  const [itemActive, setItemActive] = useState(BASE_DATA);
 
   const [search, setSearch] = useState("");
 
@@ -57,24 +64,20 @@ function Booths() {
     setItemActive(item);
   };
 
-  const fechBooths = async () => {
+  const fechProducts = async () => {
     try {
-      const res = await getListBooth();
-      setBooths(res?.booths);
+      const res = await getListProducts(param.id);
+      setProducts(res?.items);
       onDeleteClose();
     } catch (error) {
       console.log(error);
     }
   };
-
   const deleteBooths = async () => {
     try {
-      await deleteBooth(itemActive.id);
-      fechBooths();
-      setItemActive({
-        name: "",
-        address: "",
-      });
+      await deleteProduct(itemActive.id);
+      fechProducts();
+      setItemActive(BASE_DATA);
     } catch (error) {
       console.log(error);
     }
@@ -82,12 +85,9 @@ function Booths() {
 
   const handleAddBooth = async (values) => {
     try {
-      await addBooth(values);
-      fechBooths();
-      setItemActive({
-        name: "",
-        address: "",
-      });
+      await addProduct(values);
+      fechProducts();
+      setItemActive(BASE_DATA);
       onAddClose();
     } catch (error) {
       console.log(error);
@@ -96,12 +96,9 @@ function Booths() {
 
   const handleEditBooth = async (values) => {
     try {
-      await editBooth(itemActive.id, values);
-      fechBooths();
-      setItemActive({
-        name: "",
-        address: "",
-      });
+      await editProduct(itemActive.id, values);
+      fechProducts();
+      setItemActive(BASE_DATA);
       onEditClose();
     } catch (error) {
       console.log(error);
@@ -113,14 +110,14 @@ function Booths() {
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    let newList = booths?.filter((item) =>
+    let newList = products?.filter((item) =>
       item?.name?.toLowerCase().includes(search.toLowerCase())
     );
     return newList?.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, booths, search]);
+  }, [currentPage, products, search]);
 
   useEffect(() => {
-    fechBooths();
+    fechProducts();
   }, []);
 
   return (
@@ -131,15 +128,15 @@ function Booths() {
         onDeleteOpen={handleDeleteOpen}
         onEditOpen={handleEditOpen}
         onAddOpen={onAddOpen}
-        title="Booth list"
-        addtext = "New booth"
+        title="Product list"
+        addtext = "New product"
       />
       <div className="center">
-        {booths && (
+        {products && (
           <Pagination
             className="pagination-bar"
             currentPage={currentPage}
-            totalCount={booths?.length}
+            totalCount={products?.length}
             pageSize={PageSize}
             onPageChange={(page) => setCurrentPage(page)}
           />
@@ -205,4 +202,4 @@ function Booths() {
   );
 }
 
-export default Booths;
+export default Products;

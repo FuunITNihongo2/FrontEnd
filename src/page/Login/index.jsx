@@ -17,10 +17,15 @@ import { useState } from "react";
 import Footer from "../../layout/Footer";
 import { AiFillEye, AiFillEyeInvisible, AiFillLock } from "react-icons/ai";
 import { MdEmail } from "react-icons/md";
+import { login } from "../../api";
+import { useNavigate } from "react-router-dom";
 export default function Login() {
+  const navigate = useNavigate();
+  const [email, setEmal] = useState("");
   const [password, setPassword] = useState("");
   const [typeP, setTypeP] = useState("password");
   const [iconP, setIconP] = useState(<AiFillEyeInvisible />);
+
   const showPass = () => {
     if (typeP === "password") {
       setTypeP("text");
@@ -28,6 +33,22 @@ export default function Login() {
     } else {
       setTypeP("password");
       setIconP(<AiFillEyeInvisible />);
+    }
+  };
+
+  const handleLogin = async () => {
+    const user = {
+      email: email,
+      password: password,
+    };
+    try {
+      await login(user).then((res) => {
+        localStorage.setItem("user", JSON.stringify(res.data));
+        navigate("/");
+        console.log(res.data);
+      });
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -53,7 +74,14 @@ export default function Login() {
               <FormLabel fontWeight={"normal"}>Email address</FormLabel>
               <InputGroup>
                 <InputLeftElement pointerEvents="none" children={<MdEmail />} />
-                <Input type="email" placeholder="Email address" />
+                <Input
+                  type="email"
+                  placeholder="Email address"
+                  value={email}
+                  onChange={(e) => {
+                    setEmal(e.target.value);
+                  }}
+                />
               </InputGroup>
             </FormControl>
             <FormControl id="password">
@@ -61,7 +89,6 @@ export default function Login() {
               {password !== "" ? (
                 <Flex
                   pos="absolute"
-                  // left="440px"
                   right={2}
                   top="52px"
                   cursor={"pointer"}
@@ -102,7 +129,12 @@ export default function Login() {
                 <Checkbox>Remember me</Checkbox>
                 <Link color={"blue.500"}>Forgot password?</Link>
               </Stack>
-              <Button as={"a"} colorScheme={"blue"} variant={"solid"} href="/">
+              <Button
+                colorScheme={"blue"}
+                variant={"solid"}
+                type="submit"
+                onClick={handleLogin}
+              >
                 Sign in
               </Button>
             </Stack>

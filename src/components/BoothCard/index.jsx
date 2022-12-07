@@ -1,67 +1,54 @@
-import {
-  Box,
-  Center,
-  Text,
-  Stack,
-  Avatar,
-  Image
-} from "@chakra-ui/react";
+import { Stack, Text, Image, Heading, Avatar, Center,Box, useColorModeValue } from "@chakra-ui/react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function blogPostWithImage() {
+export default function BoothCard({data}) {
+ 
+  const navigate = useNavigate();
+  const Navigate = () => {
+    navigate(`/booth-detail/${data.id}`);
+  };
+
   return (
-    <Center py={3}>
+    <Center py={6}>
       <Box
-        maxW={"445px"}
-        w={"full"}
-        bg={"white"}
-        boxShadow={"2xl"}
-        rounded={"md"}
+        maxW={'445px'}
+        w={'full'}
+        bg={useColorModeValue('white', 'gray.900')}
+        boxShadow={'2xl'}
+        rounded={'md'}
         p={6}
-        overflow={"hidden"}
-      >
+        overflow={'hidden'}
+        cursor='pointer'
+        _hover={{
+          opacity: '0.8',
+        }}
+        onClick={Navigate}
+        >
         <Box
-          h={"210px"}
-          bg={"gray.100"}
+          h={'210px'}
+          bg={'gray.100'}
           mt={-6}
           mx={-6}
           mb={6}
-          pos={"relative"}
-        >
-          <Image src="/slide/hinh5.jpg" layout={"fill"} />
+          pos={'relative'}>
+          <Image
+            src={data.img}
+            layout={'fill'}
+            height={210}
+            width="100%"
+          />
         </Box>
         <Stack>
-          <Text
-            color={"green.500"}
-            textTransform={"uppercase"}
-            fontWeight={800}
-            fontSize={"sm"}
-            letterSpacing={1.1}
-          >
-            ブース名
-          </Text>
-          {/* <Heading
-            color={('gray.700', 'black')}
+          <Heading
+            color={useColorModeValue('gray.700', 'white')}
             fontSize={'2xl'}
             fontFamily={'body'}>
-            Boost your conversion rate
-          </Heading> */}
-          <Text color={"gray.500"}>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-            et ea rebum.
-          </Text>
+           {data.name}
+          </Heading>
+       
         </Stack>
-        <Stack mt={6} direction={"row"} spacing={4} align={"center"}>
-          <Avatar
-            src={"https://avatars0.githubusercontent.com/u/1164541?v=4"}
-            alt={"Author"}
-          />
-          <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-            <Text fontWeight={600}>ブースオーナー</Text>
-            <Text color={'gray.500'}>2022 </Text>
-          </Stack>
-        </Stack>
+       
       </Box>
     </Center>
   );

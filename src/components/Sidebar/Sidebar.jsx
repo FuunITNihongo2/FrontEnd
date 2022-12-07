@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './Sidebar.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 function Sidebar() {
+  const param = useParams()
   const [dropShow, setDropShow] = useState([{ arrow: false },
   { arrow: false }, { arrow: false }, { arrow: false }])
 
@@ -32,6 +33,9 @@ function Sidebar() {
         <ul className="list-overview">
           <li>
             <NavLink to="/admin/booths"> <span><i class="fas fa-address-book"></i></span> Booths</NavLink>
+          </li>
+          <li>
+            <NavLink to={`/admin/booth/${param.id}/products`}> <span><i class="fas fa-address-book"></i></span>Products</NavLink>
           </li>
         </ul>
       </div>

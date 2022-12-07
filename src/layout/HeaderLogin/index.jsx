@@ -14,6 +14,11 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Image,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -21,11 +26,20 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-import { FaUser } from "react-icons/fa";
+import { FaPersonBooth, FaAudioDescription } from "react-icons/fa";
+import { BiLogOut } from "react-icons/bi";
+import { MdProductionQuantityLimits } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
-export default function Header() {
+export default function HeaderLogin() {
   const { isOpen, onToggle } = useDisclosure();
+  const navigate = useNavigate();
 
+  const logout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+  
   return (
     <Box>
       <Flex
@@ -33,7 +47,7 @@ export default function Header() {
         color={useColorModeValue("gray.600", "white")}
         minH={"60px"}
         w="100vw"
-        py={{ base: 2 }}
+        py={{ base: 1 }}
         px={{ base: 4 }}
         borderBottom={1}
         borderStyle={"solid"}
@@ -70,12 +84,68 @@ export default function Header() {
             <DesktopNav />
           </Flex>
         </Flex>
-        <Flex alignItems="center" as={"a"} href={"/login"}>
-          <FaUser />
-          <Button ml="2px" fontSize={"sm"} fontWeight={400} variant={"link"}>
-            Sign In
-          </Button>
-        </Flex>
+
+        <Menu>
+          <MenuButton _hover={{ bg: "gray.100" }} p={2} borderRadius={8}>
+            <Flex alignItems="center" color="black">
+              <Image
+                src={JSON.parse(localStorage.getItem("user")).avatar.link}
+                borderRadius="50%"
+                mr={1}
+                boxSize="35px"
+              />
+              {JSON.parse(localStorage.getItem("user")).fullname}
+            </Flex>
+          </MenuButton>
+          <MenuList zIndex={10}>
+            <MenuItem as="a" href="/booth-manage">
+              <Flex alignItems="center" color="black">
+                <FaPersonBooth />
+                <Text ml={4} fontSize="18px">
+                  私のブース
+                </Text>
+              </Flex>
+            </MenuItem>
+            <MenuItem as="a" href="/product">
+              <Flex alignItems="center" color="black">
+                <MdProductionQuantityLimits />
+                <Text ml={4} fontSize="18px">
+                  製品リスト
+                </Text>
+              </Flex>
+            </MenuItem>
+
+            {JSON.parse(localStorage.getItem("user")).role === "Admin" ? (
+              <>
+                <MenuItem as="a" href="/admin/booths">
+                  <Flex alignItems="center" color="black">
+                    <FaAudioDescription />
+                    <Text ml={4} fontSize="18px">
+                      ブース管理
+                    </Text>
+                  </Flex>
+                </MenuItem>
+                <MenuItem as="a" href={`/admin/booth/${1}/product`}>
+                  <Flex alignItems="center" color="black">
+                    <FaAudioDescription />
+                    <Text ml={4} fontSize="18px">
+                      製品管理
+                    </Text>
+                  </Flex>
+                </MenuItem>
+              </>
+            ) : null}
+
+            <MenuItem onClick={logout}>
+              <Flex alignItems="center" color="black">
+                <BiLogOut />
+                <Text ml={4} fontSize="18px">
+                  サインアウト
+                </Text>
+              </Flex>
+            </MenuItem>
+          </MenuList>
+        </Menu>
 
         <Collapse in={isOpen} animateOpacity>
           <MobileNav />
