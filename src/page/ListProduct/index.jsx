@@ -30,7 +30,7 @@ export default function ListProduct() {
   return (
     <Box bg="rgba(0,0,0,0.05)" p={5} minH="100vh">
       <Text py={3} fontSize="4xl" fontWeight={700} color="black" ml={5}>
-        リストブース
+      製品一覧
       </Text>
       <Grid templateColumns="repeat(5, 1fr)">
         {products?.map((item, index) => {
