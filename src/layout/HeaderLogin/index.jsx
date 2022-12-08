@@ -39,6 +39,8 @@ export default function HeaderLogin() {
     localStorage.removeItem("user");
     navigate("/login");
   };
+
+  const user = JSON.parse(localStorage.getItem("user"))
   
   return (
     <Box>
@@ -69,7 +71,7 @@ export default function HeaderLogin() {
             aria-label={"Toggle Navigation"}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
+        <Flex flex={{ base: 1 }} alignItems="center" justify={{ base: "center", md: "start" }}>
           <Text
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
@@ -77,7 +79,7 @@ export default function HeaderLogin() {
             as="a"
             href="/"
           >
-            Logo
+            <Image style={{width: '60px'}} src="images/logo.png"/>
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -89,12 +91,12 @@ export default function HeaderLogin() {
           <MenuButton _hover={{ bg: "gray.100" }} p={2} borderRadius={8}>
             <Flex alignItems="center" color="black">
               <Image
-                src={JSON.parse(localStorage.getItem("user")).avatar.link}
+                src={user.avatar.link}
                 borderRadius="50%"
                 mr={1}
                 boxSize="35px"
               />
-              {JSON.parse(localStorage.getItem("user")).fullname}
+              {user.fullname}
             </Flex>
           </MenuButton>
           <MenuList zIndex={10}>
@@ -115,7 +117,7 @@ export default function HeaderLogin() {
               </Flex>
             </MenuItem>
 
-            {JSON.parse(localStorage.getItem("user")).role === "Admin" ? (
+            {user?.role === "Admin" ? (
               <>
                 <MenuItem as="a" href="/admin/booths">
                   <Flex alignItems="center" color="black">
@@ -125,7 +127,7 @@ export default function HeaderLogin() {
                     </Text>
                   </Flex>
                 </MenuItem>
-                <MenuItem as="a" href={`/admin/booth/${1}/product`}>
+                <MenuItem as="a" href={`/admin/booth/${user.booth}/products`}>
                   <Flex alignItems="center" color="black">
                     <FaAudioDescription />
                     <Text ml={4} fontSize="18px">
@@ -310,41 +312,15 @@ const MobileNavItem = ({ label, children, href }) => {
 
 const NAV_ITEMS = [
   {
-    label: "Inspiration",
-    children: [
-      {
-        label: "Explore Design Work",
-        subLabel: "Trending Design to inspire you",
-        href: "#",
-      },
-      {
-        label: "New & Noteworthy",
-        subLabel: "Up-and-coming Designers",
-        href: "#",
-      },
-    ],
+    label: "ホーム",
+    href: "/",
   },
   {
-    label: "Find Work",
-    children: [
-      {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
-        href: "#",
-      },
-      {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
-        href: "#",
-      },
-    ],
+    label: "ブース",
+    href: "/booths"
   },
   {
-    label: "Learn Design",
-    href: "#",
-  },
-  {
-    label: "Hire Designers",
-    href: "#",
+    label: "製品",
+    href: "/products",
   },
 ];

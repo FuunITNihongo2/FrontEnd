@@ -14,6 +14,7 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  Image
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -55,7 +56,7 @@ export default function Header() {
             aria-label={"Toggle Navigation"}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
+        <Flex flex={{ base: 1 }} alignItems="center" justify={{ base: "center", md: "start" }}>
           <Text
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
@@ -63,7 +64,7 @@ export default function Header() {
             as="a"
             href="/"
           >
-            Logo
+            <Image style={{width: '60px'}} src="/images/logo.png"/>
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -201,7 +202,7 @@ const MobileNavItem = ({ label, children, href }) => {
         }}
       >
         <Text
-          fontWeight={600}
+          fontWeight={700}
           color={useColorModeValue("gray.600", "gray.200")}
         >
           {label}
@@ -238,43 +239,18 @@ const MobileNavItem = ({ label, children, href }) => {
   );
 };
 
+
 const NAV_ITEMS = [
   {
-    label: "Inspiration",
-    children: [
-      {
-        label: "Explore Design Work",
-        subLabel: "Trending Design to inspire you",
-        href: "#",
-      },
-      {
-        label: "New & Noteworthy",
-        subLabel: "Up-and-coming Designers",
-        href: "#",
-      },
-    ],
+    label: "ホーム",
+    href: "/",
   },
   {
-    label: "Find Work",
-    children: [
-      {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
-        href: "#",
-      },
-      {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
-        href: "#",
-      },
-    ],
+    label: "ブース",
+    href: "/booths"
   },
   {
-    label: "Learn Design",
-    href: "#",
-  },
-  {
-    label: "Hire Designers",
-    href: "#",
+    label: "製品",
+    href: "/products",
   },
 ];
