@@ -8,11 +8,14 @@ function Header() {
   return (
     <div className="header">
       <div className="header__logo">
+        <Link href="/">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/8/84/Apple_Computer_Logo_rainbow.svg"
           width="40px"
           alt=""
         />
+        </Link>
+        
       </div>
       <ul className="header__menu">
         <li>

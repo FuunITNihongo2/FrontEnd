@@ -30,7 +30,6 @@ function EditForm({ onSubmit, itemActive }) {
     <Formik
       initialValues={itemActive}
       onSubmit={(values) => {
-        console.log(values)
         onSubmit(values);
       }}
     >

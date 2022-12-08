@@ -67,7 +67,7 @@ function Products() {
   const fechProducts = async () => {
     try {
       const res = await getListProducts(param.id);
-      setProducts(res?.items);
+      setProducts(res?.listOfItems);
       onDeleteClose();
     } catch (error) {
       console.log(error);

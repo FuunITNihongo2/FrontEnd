@@ -81,6 +81,7 @@ function Booths() {
   };
 
   const handleAddBooth = async (values) => {
+   
     try {
       await addBooth(values);
       fechBooths();
@@ -119,6 +120,14 @@ function Booths() {
     return newList?.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, booths, search]);
 
+  const handleAddOpen =()=>{
+    setItemActive({
+      name: "",
+      address: "",
+    });
+    onAddOpen()
+  }
+  
   useEffect(() => {
     fechBooths();
   }, []);
@@ -130,7 +139,7 @@ function Booths() {
         onSearch={(value) => setSearch(value)}
         onDeleteOpen={handleDeleteOpen}
         onEditOpen={handleEditOpen}
-        onAddOpen={onAddOpen}
+        onAddOpen={handleAddOpen}
         title="Booth list"
         addtext = "New booth"
       />
