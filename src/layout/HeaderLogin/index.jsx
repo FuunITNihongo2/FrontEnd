@@ -40,8 +40,8 @@ export default function HeaderLogin() {
     navigate("/login");
   };
 
-  const user = JSON.parse(localStorage.getItem("user"))
-  
+  const user = JSON.parse(localStorage.getItem("user"));
+
   return (
     <Box>
       <Flex
@@ -71,7 +71,11 @@ export default function HeaderLogin() {
             aria-label={"Toggle Navigation"}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} alignItems="center" justify={{ base: "center", md: "start" }}>
+        <Flex
+          flex={{ base: 1 }}
+          alignItems="center"
+          justify={{ base: "center", md: "start" }}
+        >
           <Text
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
@@ -79,7 +83,7 @@ export default function HeaderLogin() {
             as="a"
             href="/"
           >
-            <Image style={{width: '60px'}} src="images/logo.png"/>
+            <Image style={{ width: "60px" }} src="images/logo.png" />
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -108,7 +112,7 @@ export default function HeaderLogin() {
                 </Text>
               </Flex>
             </MenuItem>
-            <MenuItem as="a" href="/product">
+            <MenuItem as="a" href="/product-manage">
               <Flex alignItems="center" color="black">
                 <MdProductionQuantityLimits />
                 <Text ml={4} fontSize="18px">
@@ -117,7 +121,7 @@ export default function HeaderLogin() {
               </Flex>
             </MenuItem>
 
-            {user?.role === "Admin" ? (
+            {user?.role === "Manager" ? (
               <>
                 <MenuItem as="a" href="/admin/booths">
                   <Flex alignItems="center" color="black">
@@ -317,7 +321,7 @@ const NAV_ITEMS = [
   },
   {
     label: "ブース",
-    href: "/booths"
+    href: "/booths",
   },
   {
     label: "製品",

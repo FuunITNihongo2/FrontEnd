@@ -69,7 +69,7 @@ function Home() {
 
         <Box bg="rgba(0,0,0,0.05)" p={5} borderRadius={8} mt={5}>
           <Text px={10} py={3} fontSize="4xl" fontWeight={700}>
-          優れた食品
+            優れた食品
           </Text>
           <Grid templateColumns="repeat(5, 1fr)">
             {Items?.map((item, index) => {
@@ -77,7 +77,13 @@ function Home() {
             })}
           </Grid>
           <Flex alignItems={"center"} justifyContent={"center"}>
-            <Button  colorScheme="blue" variant="solid" size="lg" as="a" href="/products">
+            <Button
+              colorScheme="blue"
+              variant="solid"
+              size="lg"
+              as="a"
+              href="/products"
+            >
               もっと見る
             </Button>
           </Flex>

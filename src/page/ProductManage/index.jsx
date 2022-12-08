@@ -10,7 +10,7 @@ import {
   FormLabel,
   Image,
 } from "@chakra-ui/react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import CardProduct from "../../components/CardProduct";
 import {
   Modal,
@@ -20,7 +20,8 @@ import {
   ModalFooter,
   ModalBody,
 } from "@chakra-ui/react";
-import { getListProducts } from "../../api";
+import { addProduct, getListProductsByBoothId } from "../../api";
+import axios from "axios";
 
 export default function ProductManage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -28,6 +29,12 @@ export default function ProductManage() {
   const inputRef = useRef("");
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([]);
+  const [menu_id, setMenuId] = useState(0);
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [dsc, setDsc] = useState("");
+  const [img, setImg] = useState("");
+  const [imgPre, setImgPre] = useState("/slide/mon9.jpg");
 
   const handleClick = () => {
     inputRef.current.click();
@@ -35,11 +42,11 @@ export default function ProductManage() {
   const [Items, setItems] = useState([]);
   const fechItems = async () => {
     try {
-      await getListProducts(
+      await getListProductsByBoothId(
         JSON.parse(localStorage.getItem("user")).booth
       ).then((res) => {
         setItems(
-          res.listOfItems.map((item) => {
+          res.items.map((item) => {
             return {
               id: item.id,
               name: item.name,
@@ -49,14 +56,56 @@ export default function ProductManage() {
             };
           })
         );
+        setMenuId(res.menu.id);
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+    onClose();
+  };
+  useEffect(() => {
+    fechItems();
+  }, []);
+
+  const AddProduct = async () => {
+    const formdata = new FormData();
+    formdata.append("name", name);
+    formdata.append("price", price);
+    formdata.append("description", dsc);
+    formdata.append("menu_id", menu_id);
+    formdata.append("image", img);
+    try {
+      await addProduct(formdata).then((res) => {
+        console.log(res);
       });
     } catch (error) {
       console.log(error.message);
     }
   };
-  useEffect(() => {
-    fechItems();
+
+  const handlecreateBase64 = useCallback(async (e) => {
+    const file = e.target.files[0];
+    setImg(file);
+    const base64 = await convertToBase64(file);
+    setImgPre(base64);
+    e.target.value = "";
   }, []);
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      if (!file) {
+        alert("Please select an image");
+      } else {
+        fileReader.readAsDataURL(file);
+        fileReader.onload = () => {
+          resolve(fileReader.result);
+        };
+      }
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
 
   const handleSearch = (searchTerm) => {
     try {
@@ -121,11 +170,6 @@ export default function ProductManage() {
               return <CardProduct data={item} key={index} />;
             })}
       </Grid>
-      <Flex alignItems={"center"} justifyContent={"center"} mt={5}>
-        <Button colorScheme="teal" variant="solid" size="lg">
-          もっと見る
-        </Button>
-      </Flex>
 
       <Modal
         initialFocusRef={initialRef}
@@ -143,24 +187,37 @@ export default function ProductManage() {
               <Image
                 boxSize="170px"
                 objectFit="cover"
-                src="/slide/mon9.jpg"
+                src={imgPre}
                 alt="food"
               />
               <Flex display={"block"}>
                 <Flex>
                   <FormControl ml={5} width={"45%"}>
                     <FormLabel>名前</FormLabel>
-                    <Input ref={initialRef} placeholder="名前" />
+                    <Input
+                      ref={initialRef}
+                      placeholder="名前"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
                   </FormControl>
                   <FormControl ml={5} width={"45%"}>
                     <FormLabel> 価格 </FormLabel>
-                    <Input placeholder="価格" />
+                    <Input
+                      placeholder="価格"
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
+                    />
                   </FormControl>
                 </Flex>
 
                 <FormControl ml={5} mt={5} width={"95%"}>
                   <FormLabel> 紹介 </FormLabel>
-                  <Input placeholder="紹介" />
+                  <Input
+                    placeholder="紹介"
+                    value={dsc}
+                    onChange={(e) => setDsc(e.target.value)}
+                  />
                 </FormControl>
               </Flex>
             </Flex>
@@ -170,6 +227,7 @@ export default function ProductManage() {
                 size="xs"
                 display={"none"}
                 ref={inputRef}
+                onChange={handlecreateBase64}
               ></Input>
               <Button
                 colorScheme="teal"
@@ -183,7 +241,7 @@ export default function ProductManage() {
             </Flex>
           </ModalBody>
           <ModalFooter pt={-6}>
-            <Button colorScheme="teal" mr={3}>
+            <Button colorScheme="teal" mr={3} onClick={AddProduct}>
               Save
             </Button>
             <Button onClick={onClose}>Cancel</Button>

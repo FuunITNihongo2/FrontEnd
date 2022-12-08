@@ -18,10 +18,10 @@ import { SiVirustotal } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 import CardProduct from "../../components/CardProduct";
 import EditBooth from "../EditBooth";
-import { getBooth } from "../../api";
-import { getListProducts } from "../../api";
+import { getBooth, getListProductsByBoothId } from "../../api";
 
 export default function BoothManage() {
+  const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   const navigateProduct = () => {
     navigate(`/product-manage`);
@@ -35,8 +35,8 @@ export default function BoothManage() {
           setBDetail({
             id: res.booth.id,
             name: res.booth.name,
+            owner: res.owner.fullname,
             address: res.booth.address,
-            orders: res.booth.total_orders,
             active: res.booth.active_state,
             img: res.booth.images[0].link,
           });
@@ -53,21 +53,19 @@ export default function BoothManage() {
 
   const fechItems = async () => {
     try {
-      await getListProducts(JSON.parse(localStorage.getItem("user")).booth).then(
-        (res) => {
-          setItems(
-            res.listOfItems.map((item) => {
-              return {
-                id: item.id,
-                name: item.name,
-                price: item.price,
-                dsc: item.description,
-                img: item.images[0].link,
-              };
-            })
-          );
-        }
-      );
+      await getListProductsByBoothId(user.booth).then((res) => {
+        setItems(
+          res.items.map((item) => {
+            return {
+              id: item.id,
+              name: item.name,
+              price: item.price,
+              dsc: item.description,
+              img: item.images[0].link,
+            };
+          })
+        );
+      });
     } catch (error) {
       console.log(error.message);
     }
@@ -99,7 +97,7 @@ export default function BoothManage() {
                 ブースオーナー:
               </Text>
             </Flex>
-            <Text ml={3}>Nguyen Van A</Text>
+            <Text ml={3}>{bDetail.owner}</Text>
           </Flex>
 
           <Flex fontSize={"19px"} mb={5}>
@@ -110,16 +108,6 @@ export default function BoothManage() {
               </Text>
             </Flex>
             <Text ml={3}>{bDetail.address}</Text>
-          </Flex>
-
-          <Flex fontSize={"19px"} mb={5}>
-            <Flex alignItems={"center"}>
-              <SiVirustotal />
-              <Text ml={1} fontWeight="bold">
-                注文合計:
-              </Text>
-            </Flex>
-            <Text ml={4}>{bDetail.orders}</Text>
           </Flex>
 
           <Flex fontSize={"19px"} mb={5} alignItems={"center"}>
@@ -145,7 +133,7 @@ export default function BoothManage() {
               </>
             )}
           </Flex>
-          <EditBooth />
+          <EditBooth booth={bDetail} />
         </Box>
       </Flex>
       <Box bg="white" boxShadow="2xl" borderRadius={8} py={3}>
