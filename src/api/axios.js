@@ -17,7 +17,7 @@ const axiosInstace = axios.create({
 })
 
 axiosInstace.interceptors.request.use(async config => {
-  const token = localStorage.getItem('user')?.token;
+  const token = localStorage.getItem('token');
   config.headers.Authorization = `Bearer ${token}`;
   return config;
 });

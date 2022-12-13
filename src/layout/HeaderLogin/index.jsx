@@ -135,6 +135,14 @@ export default function HeaderLogin() {
                     </Text>
                   </Flex>
                 </MenuItem>
+                <MenuItem as="a" href={`/invite`}>
+                  <Flex alignItems="center" color="black">
+                    <FaAudioDescription />
+                    <Text ml={4} fontSize="18px">
+                    ユーザーを招待
+                    </Text>
+                  </Flex>
+                </MenuItem>
               </>
             ) : null}
 

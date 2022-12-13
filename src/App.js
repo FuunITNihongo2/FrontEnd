@@ -16,6 +16,7 @@ import ListBooth from "./page/ListBooth";
 import ProductManage from "./page/ProductManage";
 import ListProduct from "./page/ListProduct";
 import ProductDetail from './page/ProductDetail'
+import InviteUser from "./page/InviteUser";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           <Route path="product" element={<Product />} />
           <Route path="product-manage" element={<ProductManage />} />
           <Route path="products" element={<ListProduct/>} />
-
+          <Route path="invite" element={<InviteUser />} />  
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/admin/booths" exact="true" element={<Booths />} />
