@@ -20,7 +20,6 @@ import {
 const PageSize = 10;
 
 function Booths() {
-  
   const [booths, setBooths] = useState(null);
   const {
     isOpen: isEditOpen,
@@ -81,7 +80,6 @@ function Booths() {
   };
 
   const handleAddBooth = async (values) => {
-   
     try {
       await addBooth(values);
       fechBooths();
@@ -97,13 +95,14 @@ function Booths() {
 
   const handleEditBooth = async (values) => {
     try {
-      await editBooth(itemActive.id, values);
-      fechBooths();
-      setItemActive({
-        name: "",
-        address: "",
+      await editBooth(itemActive.id, values).then((res) => {
+        fechBooths();
+        setItemActive({
+          name: "",
+          address: "",
+        });
+        onEditClose();
       });
-      onEditClose();
     } catch (error) {
       console.log(error);
     }
@@ -120,14 +119,14 @@ function Booths() {
     return newList?.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, booths, search]);
 
-  const handleAddOpen =()=>{
+  const handleAddOpen = () => {
     setItemActive({
       name: "",
       address: "",
     });
-    onAddOpen()
-  }
-  
+    onAddOpen();
+  };
+
   useEffect(() => {
     fechBooths();
   }, []);
@@ -141,7 +140,7 @@ function Booths() {
         onEditOpen={handleEditOpen}
         onAddOpen={handleAddOpen}
         title="Booth list"
-        addtext = "New booth"
+        addtext="New booth"
       />
       <div className="center">
         {booths && (
