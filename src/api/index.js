@@ -2,6 +2,7 @@ import axios from "./axios";
 
 //authorized
 export const login = (values) => axios.post("/login", values);
+export const invite = (values) => axios.post("/invite", values);
 
 //home
 export const getHome = () => axios.get("/home");
