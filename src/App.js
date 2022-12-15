@@ -18,6 +18,7 @@ import ListProduct from "./page/ListProduct";
 import ProductDetail from "./page/ProductDetail";
 import Profile from "./page/Profile";
 import VerifyEmail from "./page/VerifyEmail";
+import InviteUser from "./page/InviteUser";
 
 function App() {
   return (
@@ -33,9 +34,9 @@ function App() {
           <Route path="booth-manage" element={<BoothManage />} />
           <Route path="product" element={<Product />} />
           <Route path="product-manage" element={<ProductManage />} />
-          <Route path="products" element={<ListProduct />} />
-
           <Route path="profile" element={<Profile />} />
+          <Route path="products" element={<ListProduct />} />
+          <Route path="invite" element={<InviteUser />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/admin/booths" exact="true" element={<Booths />} />

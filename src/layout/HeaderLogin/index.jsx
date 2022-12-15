@@ -123,12 +123,20 @@ export default function HeaderLogin() {
                     </Text>
                   </Flex>
                 </MenuItem>
-                <MenuItem onClick={logout}>
+                <MenuItem as="a" href={`/invite`}>
+                  <Flex alignItems="center" color="black">
+                    <FaAudioDescription />
+                    <Text ml={4} fontSize="18px">
+                    ユーザーを招待
+                    </Text>
+                  </Flex>
+                </MenuItem>
+                  <MenuItem onClick={logout}>
                   <Flex alignItems="center" color="black">
                     <BiLogOut />
                     <Text ml={4} fontSize="18px">
                       サインアウト
-                    </Text>
+                      </Text>
                   </Flex>
                 </MenuItem>
               </>
