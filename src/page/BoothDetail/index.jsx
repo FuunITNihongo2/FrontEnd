@@ -34,7 +34,7 @@ export default function BoothDetail() {
           id: res.booth.id,
           name: res.booth.name,
           address: res.booth.address,
-          orders: res.booth.total_orders,
+          owner: res.owner.nickname,
           active: res.booth.active_state,
           img: res.booth.images[0].link,
         });
@@ -94,7 +94,7 @@ export default function BoothDetail() {
                 ブースオーナー:
               </Text>
             </Flex>
-            <Text ml={3}>Nguyen Van A</Text>
+            <Text ml={3}>{bDetail.owner ? bDetail.owner : ""}</Text>
           </Flex>
 
           <Flex fontSize={"19px"} mb={5}>
@@ -107,21 +107,11 @@ export default function BoothDetail() {
             <Text ml={3}>{bDetail ? bDetail.address : ""}</Text>
           </Flex>
 
-          <Flex fontSize={"19px"} mb={5}>
-            <Flex alignItems={"center"}>
-              <SiVirustotal />
-              <Text ml={1} fontWeight="bold">
-                注文合計:
-              </Text>
-            </Flex>
-            <Text ml={4}>{bDetail ? bDetail.orders : ""}</Text>
-          </Flex>
-
           <Flex fontSize={"19px"} mb={5} alignItems={"center"}>
             <Flex alignItems={"center"}>
               <VscLayersActive />
               <Text ml={1} mr={3} fontWeight="bold">
-                状態:
+                アクティブな状態:
               </Text>
             </Flex>
             {bDetail.active === 1 ? (
@@ -129,14 +119,14 @@ export default function BoothDetail() {
                 <Box color="green.500">
                   <AiFillCheckCircle />
                 </Box>
-                <Text color="green.500">アクティブ</Text>
+                <Text color="green.500">オンライン</Text>
               </>
             ) : (
               <>
                 <Box color="red">
                   <AiFillMinusCircle />
                 </Box>
-                <Text color="red">非活性</Text>
+                <Text color="red">オフライン</Text>
               </>
             )}
           </Flex>

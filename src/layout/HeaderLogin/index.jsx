@@ -30,6 +30,7 @@ import { FaPersonBooth, FaAudioDescription } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { CgProfile } from "react-icons/cg";
 
 export default function HeaderLogin() {
   const { isOpen, onToggle } = useDisclosure();
@@ -104,24 +105,7 @@ export default function HeaderLogin() {
             </Flex>
           </MenuButton>
           <MenuList zIndex={10}>
-            <MenuItem as="a" href="/booth-manage">
-              <Flex alignItems="center" color="black">
-                <FaPersonBooth />
-                <Text ml={4} fontSize="18px">
-                  私のブース
-                </Text>
-              </Flex>
-            </MenuItem>
-            <MenuItem as="a" href="/product-manage">
-              <Flex alignItems="center" color="black">
-                <MdProductionQuantityLimits />
-                <Text ml={4} fontSize="18px">
-                  製品リスト
-                </Text>
-              </Flex>
-            </MenuItem>
-
-            {user?.role === "Manager" ? (
+            {user?.role === "Admin" ? (
               <>
                 <MenuItem as="a" href="/admin/booths">
                   <Flex alignItems="center" color="black">
@@ -131,7 +115,10 @@ export default function HeaderLogin() {
                     </Text>
                   </Flex>
                 </MenuItem>
-                <MenuItem as="a" href={`/admin/booth/${user.booth}/products`}>
+                <MenuItem
+                  as="a"
+                  href={`/admin/booth/${user.booth.id}/products`}
+                >
                   <Flex alignItems="center" color="black">
                     <FaAudioDescription />
                     <Text ml={4} fontSize="18px">
@@ -139,17 +126,51 @@ export default function HeaderLogin() {
                     </Text>
                   </Flex>
                 </MenuItem>
+                <MenuItem onClick={logout}>
+                  <Flex alignItems="center" color="black">
+                    <BiLogOut />
+                    <Text ml={4} fontSize="18px">
+                      サインアウト
+                    </Text>
+                  </Flex>
+                </MenuItem>
               </>
-            ) : null}
-
-            <MenuItem onClick={logout}>
-              <Flex alignItems="center" color="black">
-                <BiLogOut />
-                <Text ml={4} fontSize="18px">
-                  サインアウト
-                </Text>
-              </Flex>
-            </MenuItem>
+            ) : (
+              <>
+                <MenuItem as="a" href="/profile">
+                  <Flex alignItems="center" color="black">
+                    <CgProfile />
+                    <Text ml={4} fontSize="18px">
+                      プロフィール
+                    </Text>
+                  </Flex>
+                </MenuItem>
+                <MenuItem as="a" href="/booth-manage">
+                  <Flex alignItems="center" color="black">
+                    <FaPersonBooth />
+                    <Text ml={4} fontSize="18px">
+                      私のブース
+                    </Text>
+                  </Flex>
+                </MenuItem>
+                <MenuItem as="a" href="/product-manage">
+                  <Flex alignItems="center" color="black">
+                    <MdProductionQuantityLimits />
+                    <Text ml={4} fontSize="18px">
+                      製品リスト
+                    </Text>
+                  </Flex>
+                </MenuItem>
+                <MenuItem onClick={logout}>
+                  <Flex alignItems="center" color="black">
+                    <BiLogOut />
+                    <Text ml={4} fontSize="18px">
+                      サインアウト
+                    </Text>
+                  </Flex>
+                </MenuItem>
+              </>
+            )}
           </MenuList>
         </Menu>
 

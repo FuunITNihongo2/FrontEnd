@@ -9,6 +9,7 @@ import {
   FormControl,
   FormLabel,
   Image,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import CardProduct from "../../components/CardProduct";
@@ -27,6 +28,7 @@ export default function ProductManage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
   const inputRef = useRef("");
+  const toast = useToast();
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [menu_id, setMenuId] = useState(0);
@@ -43,7 +45,7 @@ export default function ProductManage() {
   const fechItems = async () => {
     try {
       await getListProductsByBoothId(
-        JSON.parse(localStorage.getItem("user")).booth
+        JSON.parse(localStorage.getItem("user")).booth.id
       ).then((res) => {
         setItems(
           res.items.map((item) => {
@@ -61,7 +63,6 @@ export default function ProductManage() {
     } catch (error) {
       console.log(error.message);
     }
-    onClose();
   };
   useEffect(() => {
     fechItems();
@@ -81,6 +82,32 @@ export default function ProductManage() {
     } catch (error) {
       console.log(error.message);
     }
+    setName("");
+    setDsc("");
+    setPrice("");
+    getListProductsByBoothId(
+      JSON.parse(localStorage.getItem("user")).booth.id
+    ).then((res) => {
+      setItems(
+        res.items.map((item) => {
+          return {
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            dsc: item.description,
+            img: item.images[0].link,
+          };
+        })
+      );
+      setMenuId(res.menu.id);
+    });
+    toast({
+      title: "Successfully!",
+      description: "新商品を追加しました.",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
   };
 
   const handlecreateBase64 = useCallback(async (e) => {

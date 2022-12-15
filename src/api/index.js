@@ -22,3 +22,5 @@ export const getListProduct = (id) => axios.get(`/item/${id}`);
 export const deleteProduct = (id) => axios.delete(`/item/${id}`);
 export const editProduct = (id, values) => axios.put(`/item/${id}`, values);
 export const addProduct = (values) => axios.post(`/item`, values);
+
+export const editProfile = (values) => axios.put(`/profile`, values);
