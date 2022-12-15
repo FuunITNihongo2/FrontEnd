@@ -96,7 +96,11 @@ export default function HeaderLogin() {
           <MenuButton _hover={{ bg: "gray.100" }} p={2} borderRadius={8}>
             <Flex alignItems="center" color="black">
               <Image
-                src={user.avatar.link}
+                src={
+                  user.avatar === null
+                    ? "/images/user-avatar.png"
+                    : user.avatar.link
+                }
                 borderRadius="50%"
                 mr={1}
                 boxSize="35px"
@@ -127,16 +131,16 @@ export default function HeaderLogin() {
                   <Flex alignItems="center" color="black">
                     <FaAudioDescription />
                     <Text ml={4} fontSize="18px">
-                    ユーザーを招待
+                      ユーザーを招待
                     </Text>
                   </Flex>
                 </MenuItem>
-                  <MenuItem onClick={logout}>
+                <MenuItem onClick={logout}>
                   <Flex alignItems="center" color="black">
                     <BiLogOut />
                     <Text ml={4} fontSize="18px">
                       サインアウト
-                      </Text>
+                    </Text>
                   </Flex>
                 </MenuItem>
               </>

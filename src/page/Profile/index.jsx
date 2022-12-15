@@ -24,7 +24,14 @@ export default function Profile() {
         <Box flex={1} h="100%">
           <Center w="100%">
             <Box w="80%">
-              <Image src={user.avatar.link} w="100%" />
+              <Image
+                src={
+                  user.avatar === null
+                    ? "/images/user-avatar"
+                    : user.avatar.link
+                }
+                w="100%"
+              />
               <Text
                 textAlign={"center"}
                 fontSize="30px"
