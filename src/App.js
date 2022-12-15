@@ -17,6 +17,7 @@ import ProductManage from "./page/ProductManage";
 import ListProduct from "./page/ListProduct";
 import ProductDetail from "./page/ProductDetail";
 import Profile from "./page/Profile";
+import VerifyEmail from "./page/VerifyEmail";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           element={<Products />}
         />
         <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/verify/:token" element={<VerifyEmail />} />
       </Routes>
     </Box>
   );

@@ -115,10 +115,7 @@ export default function HeaderLogin() {
                     </Text>
                   </Flex>
                 </MenuItem>
-                <MenuItem
-                  as="a"
-                  href={`/admin/booth/${user.booth.id}/products`}
-                >
+                <MenuItem as="a" href={`/admin/booth/${user.id}/products`}>
                   <Flex alignItems="center" color="black">
                     <FaAudioDescription />
                     <Text ml={4} fontSize="18px">
