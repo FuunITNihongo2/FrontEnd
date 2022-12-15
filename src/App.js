@@ -15,7 +15,8 @@ import ChangePassword from "./page/ChangePassword";
 import ListBooth from "./page/ListBooth";
 import ProductManage from "./page/ProductManage";
 import ListProduct from "./page/ListProduct";
-import ProductDetail from './page/ProductDetail'
+import ProductDetail from "./page/ProductDetail";
+import Profile from "./page/Profile";
 import InviteUser from "./page/InviteUser";
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="booth-manage" element={<BoothManage />} />
           <Route path="product" element={<Product />} />
           <Route path="product-manage" element={<ProductManage />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="products" element={<ListProduct/>} />
           <Route path="invite" element={<InviteUser />} />  
         </Route>

@@ -5,7 +5,7 @@ import { getListBooth } from "../../api";
 
 export default function ListBooth() {
   const [listBooths, setListBooths] = useState([]);
-   const inputRef = useRef("");
+  const inputRef = useRef("");
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const fechData = async () => {
@@ -28,7 +28,6 @@ export default function ListBooth() {
   useEffect(() => {
     fechData();
   }, []);
-
 
   const handleSearch = (searchTerm) => {
     try {
@@ -73,7 +72,7 @@ export default function ListBooth() {
         </Flex>
       </Flex>
 
-      <Grid templateColumns="repeat(4, 1fr)" gap={6} px={10} py={3}>
+      <Grid templateColumns="repeat(4, 1fr)" gap={2} px={10} py={3}>
         {searchTerm.length < 1
           ? listBooths?.map((item, index) => {
               return <BoothCard data={item} key={index} />;
