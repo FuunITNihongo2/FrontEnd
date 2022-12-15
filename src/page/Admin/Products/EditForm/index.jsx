@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { Formik, Form, Field } from "formik";
 import {
   FormControl,
@@ -6,9 +6,12 @@ import {
   FormErrorMessage,
   Input,
   Button,
+  Stack
 } from "@chakra-ui/react";
 
 function EditForm({ onSubmit, itemActive }) {
+
+  const [file, setFile] = useState();
   
   function requiredName(value) {
     let error;
@@ -30,7 +33,8 @@ function EditForm({ onSubmit, itemActive }) {
     <Formik
       initialValues={itemActive}
       onSubmit={(values) => {
-        onSubmit(values);
+        const data = {...values, image: file}
+        onSubmit(data);
       }}
     >
       {(props) => (
@@ -62,15 +66,19 @@ function EditForm({ onSubmit, itemActive }) {
               </FormControl>
             )}
           </Field>
-          <Field name="images">
-            {({ field }) => (
-              <FormControl
-              >
-                <FormLabel>Images</FormLabel>
-                <Input {...field} placeholder="Images" />
-              </FormControl>
-            )}
-          </Field>
+          
+          <Stack mt={5} className="form-group">
+            <label for="file">File upload</label>
+            <input
+              id="file"
+              name="file"
+              type="file"
+              onChange={(event) => {
+                setFile(event.currentTarget.files[0]);
+              }}
+              className="form-control"
+            />
+          </Stack>
           <Button mt={4} colorScheme="teal" type="submit">
             Submit
           </Button>
