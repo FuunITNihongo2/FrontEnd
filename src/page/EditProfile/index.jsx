@@ -29,7 +29,9 @@ export default function EditProfile(props) {
   const [nickname, setNickName] = useState(user.nickname);
   const [phone, setPhone] = useState(user.phone_number);
   const [img, setImg] = useState("");
-  const [imgPrev, setImgPrev] = useState(user.avatar.link);
+  const [imgPrev, setImgPrev] = useState(
+    user.avatar === null ? "/images/user-avatar" : user.avatar.link
+  );
   const handleEdit = async (e) => {
     e.preventDefault();
     const formdata = new FormData();
@@ -37,7 +39,9 @@ export default function EditProfile(props) {
     formdata.append("fullname", fullname);
     formdata.append("nickname", nickname);
     formdata.append("phone_number", phone);
-    formdata.append("avatar", img);
+    if (img !== "") {
+      formdata.append("avatar", img);
+    }
     try {
       await axios
         .post("https://backend-et52mqssfq-as.a.run.app/api/profile", formdata, {
