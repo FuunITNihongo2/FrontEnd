@@ -5,6 +5,7 @@ import Pagination from "../../../components/Pagination/Pagination";
 import ProductList from "./Table";
 import EditForm from "./EditForm";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 import {
   Modal,
@@ -28,6 +29,7 @@ function Products() {
     onOpen: onEditOpen,
     onClose: onEditClose,
   } = useDisclosure();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const {
     isOpen: isDeleteOpen,
@@ -84,25 +86,70 @@ function Products() {
   };
 
   const handleAddBooth = async (values) => {
+
+
+    const formdata = new FormData();
+    formdata.append("_method", "POST");
+    formdata.append("menu_id", param.id);
+
+    formdata.append("name", values.name);
+    formdata.append("price", values.price);
+    formdata.append("description", values.description);
+    formdata.append("image", values.image);
+    
+   
     try {
-      await addProduct(values);
-      fechProducts();
-      setItemActive(BASE_DATA);
-      onAddClose();
+      await axios
+        .post("https://backend-et52mqssfq-as.a.run.app/api/item", formdata, {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        })
+        .then((res) => {
+          fechProducts();
+          setItemActive(BASE_DATA);
+          onAddClose();
+        });
     } catch (error) {
       console.log(error);
     }
+
+    
   };
 
   const handleEditBooth = async (values) => {
+
+    const formdata = new FormData();
+    formdata.append("_method", "PUT");
+    formdata.append("name", values.name);
+    formdata.append("menu_id", param.id);
+
+    formdata.append("price", values.price);
+    formdata.append("description", values.description);
+    formdata.append("image", values.image);
+    
+   
     try {
-      await editProduct(itemActive.id, values);
-      fechProducts();
-      setItemActive(BASE_DATA);
-      onEditClose();
+      await axios
+        .put(`https://backend-et52mqssfq-as.a.run.app/api/item${itemActive.id}`, formdata, {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        })
+        .then((res) => {
+          fechProducts();
+          setItemActive(BASE_DATA);
+          onAddClose();
+        });
     } catch (error) {
       console.log(error);
     }
+
+   
   };
 
   const [currentPage, setCurrentPage] = useState(1);

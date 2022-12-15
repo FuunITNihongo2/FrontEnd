@@ -4,6 +4,7 @@ import { getListBooth, deleteBooth, editBooth, addBooth } from "../../../api";
 import Pagination from "../../../components/Pagination/Pagination";
 import ProductList from "./Table";
 import EditForm from "./EditForm";
+import axios from "axios";
 
 import {
   Modal,
@@ -26,6 +27,7 @@ function Booths() {
     onOpen: onEditOpen,
     onClose: onEditClose,
   } = useDisclosure();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const {
     isOpen: isDeleteOpen,
@@ -80,32 +82,62 @@ function Booths() {
   };
 
   const handleAddBooth = async (values) => {
+    const formdata = new FormData();
+    formdata.append("_method", "POST");
+    formdata.append("name", values.name);
+    formdata.append("address", values.address);
+    formdata.append("image", values.image);
+   
     try {
-      await addBooth(values);
-      fechBooths();
-      setItemActive({
-        name: "",
-        address: "",
-      });
-      onAddClose();
+      await axios
+        .post("https://backend-et52mqssfq-as.a.run.app/api/booth", formdata, {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        })
+        .then((res) => {
+          fechBooths();
+          setItemActive({
+            name: "",
+            address: "",
+          });
+          onEditClose();
+        });
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleEditBooth = async (values) => {
+    const formdata = new FormData();
+    formdata.append("_method", "PUT");
+    formdata.append("name", values.name);
+    formdata.append("address", values.address);
+    formdata.append("image", values.image);
+   
     try {
-      await editBooth(itemActive.id, values).then((res) => {
-        fechBooths();
-        setItemActive({
-          name: "",
-          address: "",
+      await axios
+        .put(`https://backend-et52mqssfq-as.a.run.app/api/booth/${itemActive.id}`, formdata, {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        })
+        .then((res) => {
+          fechBooths();
+          setItemActive({
+            name: "",
+            address: "",
+          });
+          onEditClose();
         });
-        onEditClose();
-      });
     } catch (error) {
       console.log(error);
     }
+
   };
 
   const [currentPage, setCurrentPage] = useState(1);
