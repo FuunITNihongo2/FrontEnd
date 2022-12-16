@@ -125,7 +125,6 @@ export default function BoothManage() {
     formdata.append("_method", "PUT");
     formdata.append("name", name);
     formdata.append("address", address);
-    formdata.append("active_state", active);
     if (img !== "") {
       formdata.append("image", img);
     }
@@ -316,22 +315,6 @@ export default function BoothManage() {
                         onChange={(e) => setAddress(e.target.value)}
                       />
                     </FormControl>
-
-                    <Flex alignItems="center" mt={3}>
-                      <Text mr={3}>状態:</Text>
-                      <Select
-                        size="xs"
-                        w="50%"
-                        defaultValue={active === 1 ? "active" : "inactive"}
-                        onChange={(e) => {
-                          if (e.target.value === "active") setActive(1);
-                          else setActive(0);
-                        }}
-                      >
-                        <option value="active">オンライン</option>
-                        <option value="inactive">オフライン</option>
-                      </Select>
-                    </Flex>
                   </Box>
                 </Flex>
               </AlertDialogBody>
