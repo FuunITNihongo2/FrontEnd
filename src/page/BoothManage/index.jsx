@@ -126,7 +126,9 @@ export default function BoothManage() {
     formdata.append("name", name);
     formdata.append("address", address);
     formdata.append("active_state", active);
-    formdata.append("image", img);
+    if (img !== "") {
+      formdata.append("image", img);
+    }
     try {
       await editBooth(
         JSON.parse(localStorage.getItem("user")).booth.id,
