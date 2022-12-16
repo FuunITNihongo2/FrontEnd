@@ -29,7 +29,7 @@ import { VscLayersActive } from "react-icons/vsc";
 import { AiFillCheckCircle, AiFillMinusCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import CardProduct from "../../components/CardProduct";
-import { editBooth, getBooth, getListProductsByBoothId } from "../../api";
+import { editBoothManage, getBooth, getListProductsByBoothId } from "../../api";
 
 export default function BoothManage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -130,7 +130,7 @@ export default function BoothManage() {
       formdata.append("image", img);
     }
     try {
-      await editBooth(
+      await editBoothManage(
         JSON.parse(localStorage.getItem("user")).booth.id,
         formdata
       ).then((res) => {
